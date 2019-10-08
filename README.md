@@ -1,2 +1,2 @@
-# NBAStats
+# NBAStat
 Existential Dread
