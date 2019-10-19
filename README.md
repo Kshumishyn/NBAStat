@@ -3,7 +3,7 @@ A Repository for the Django/Python Implemented Web Page containing
 
 
 # Files/Directories  
-├── CSE115ReleasePlan.pdf  
+```├── CSE115ReleasePlan.pdf  
 ├── CSE115Sprint1Plan.pdf  
 ├── CSE115Sprint1Report.pdf  
 ├── index.html  
@@ -16,3 +16,4 @@ A Repository for the Django/Python Implemented Web Page containing
 │   └── manage.py  
 ├── logoalone.png  
 └── README.md  
+```
