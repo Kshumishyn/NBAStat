@@ -12,7 +12,8 @@ A Repository for the Django/Python Implemented Web Page containing NBA Team and 
 [Trello](https://trello.com/b/1YdRzshT/nba-stat)  
 
 # Files/Directories  
-```├── CSE115ReleasePlan.pdf  
+```
+├── CSE115ReleasePlan.pdf  
 ├── CSE115Sprint1Plan.pdf  
 ├── CSE115Sprint1Report.pdf  
 ├── index.html  
