@@ -30,12 +30,20 @@ A Repository for the Django/Python Implemented Web Page containing NBA Team and 
 ├── CSE115Sprint1Plan.pdf  
 ├── CSE115Sprint1Report.pdf  
 ├── CSE115Sprint2Plan.pdf  
-├── index.html  
-├── logoalone.png  
 ├── nbaStat  
-│   ├── catalog  
-│   ├── manage.py  
-│   ├── nbaStat  
-│   └── NBA_STAT_DB  
-└── README.md  
+│   ├── catalog  
+│   ├── manage.py  
+│   └── nbaStat  
+├── README.md  
+└── WebsiteFiles  
+    ├── css  
+    ├── gulpfile.js  
+    ├── img  
+    ├── index.html  
+    ├── LICENSE  
+    ├── package.json  
+    ├── package-lock.json  
+    ├── README.md  
+    ├── scss  
+    └── vendor  
 ```
