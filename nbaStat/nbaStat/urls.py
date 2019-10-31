@@ -18,6 +18,11 @@ from django.urls import path
 from.import views
 
 urlpatterns = [
+<<<<<<< HEAD
     path('player', views.playerPage, name='playerPage'),
     path('', views.homePage, name='homePage'),
+=======
+    path('admin/', admin.site.urls),
+    path('', views.index, name='index'),
+>>>>>>> ab7e95d562494f652cb2feb94ce3ad706a8f093c
 ]
