@@ -6,4 +6,11 @@ def homePage(request):
 
 
 def playerPage(request):
-    return render(request, 'player.html')
+	print(request)
+	r = str(request)
+	i = r.find("player_name=")
+	#print(i)
+	name = r[i+12:len(r)-2].replace('+', ' ')
+	print(name)
+	
+	return render(request, 'player.html')
