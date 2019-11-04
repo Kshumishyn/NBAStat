@@ -25,22 +25,23 @@ A Repository for the Django/Python Implemented Web Page containing NBA Team and 
 
 
 ### Sprint 2:
-[Sprint 3 Plan](Unavailable)  
+[Sprint 3 Plan](https://docs.google.com/document/d/1kdrpzKujRP6eHbeuwFmMqcZQ63IMKpuTDUGNrhRC99w/edit?usp=sharing)  
 [Sprint 3 Report](Unavailable)  
 
 
 ## Files/Directories  
 ```
-├── CSE115ReleasePlan.pdf  
-├── CSE115Sprint1Plan.pdf  
-├── CSE115Sprint1Report.pdf  
-├── CSE115Sprint2Plan.pdf  
-├── CSE115Sprint2Report.pdf  
 ├── nbaStat  
+│   ├── db.sqlite3  
 │   ├── manage.py  
 │   ├── nbaStat  
 │   └── static  
 ├── nbatest.py  
 ├── README.md  
+├── Release Plan.pdf  
+├── Sprint #1 Plan.pdf  
+├── Sprint #1 Report.pdf  
+├── Sprint #2 Plan.pdf  
+├── Sprint #2 Report.pdf  
 └── testing.py  
 ```
