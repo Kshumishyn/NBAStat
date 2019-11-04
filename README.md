@@ -21,7 +21,12 @@ A Repository for the Django/Python Implemented Web Page containing NBA Team and 
 
 ### Sprint 2:
 [Sprint 2 Plan](https://docs.google.com/document/d/1Cy32H088HgJUuOSLkKJtrASwZ8ID_g09SayusXHgvas/edit?usp=sharing)  
-[Sprint 2 Report](Unavailable)  
+[Sprint 2 Report](https://docs.google.com/document/d/1UtFOsaPV_hweyOPeC5Phii_Mb9HpCiFwD0E-VRr7Ihs/edit?usp=sharing)  
+
+
+### Sprint 2:
+[Sprint 3 Plan](Unavailable)  
+[Sprint 3 Report](Unavailable)  
 
 
 ## Files/Directories  
@@ -30,20 +35,12 @@ A Repository for the Django/Python Implemented Web Page containing NBA Team and 
 ├── CSE115Sprint1Plan.pdf  
 ├── CSE115Sprint1Report.pdf  
 ├── CSE115Sprint2Plan.pdf  
+├── CSE115Sprint2Report.pdf  
 ├── nbaStat  
-│   ├── catalog  
 │   ├── manage.py  
-│   └── nbaStat  
+│   ├── nbaStat  
+│   └── static  
+├── nbatest.py  
 ├── README.md  
-└── WebsiteFiles  
-    ├── css  
-    ├── gulpfile.js  
-    ├── img  
-    ├── index.html  
-    ├── LICENSE  
-    ├── package.json  
-    ├── package-lock.json  
-    ├── README.md  
-    ├── scss  
-    └── vendor  
+└── testing.py  
 ```
