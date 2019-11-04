@@ -75,12 +75,8 @@ WSGI_APPLICATION = 'nbaStat.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'NBA_STAT_DB',
-        'USER': 'nba_stat_admin',
-        'PASSWORD': 'Nba_stat_admin',
-        'HOST': 'localhost',
-        'PORT': '8000',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
