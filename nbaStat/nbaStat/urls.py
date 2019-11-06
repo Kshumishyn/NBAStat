@@ -20,4 +20,6 @@ from.import views
 urlpatterns = [
     path('player_name/', views.playerPage, name='playerPage'),
     path('', views.homePage, name='homePage'),
+    path('about/', views.aboutPage),
+    path('randPlayer/', views.randomPage),
 ]

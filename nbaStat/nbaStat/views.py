@@ -2,15 +2,18 @@ from django.shortcuts import render
 
 
 def homePage(request):
-    return render(request, 'index.html', {'Current_Name': 'Input a player Name'})
+    return render(request, 'index.html')
 
 
 def playerPage(request):
-	print(request)
-	r = str(request)
-	i = r.find("player_name=")
-	#print(i)
-	name = r[i+12:len(r)-2].replace('+', ' ')
-	print(name)
-	
-	return render(request, 'player.html')
+    print(type(request))
+    name = request.GET.get('player_name')
+    return render(request, 'player.html', {'Player_Name': name.title()})
+
+
+def aboutPage(request):
+    return render(request, 'about.html')
+
+
+def randomPage(request):
+    return render(request, 'player.html', {'Player_Name': 'Random Player'})
