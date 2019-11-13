@@ -8,7 +8,7 @@
   <meta name="description" content="NBA Statistic Lookup">
   <meta name="author" content="Justin^2">
 
-  <title>Landing Page - Start Bootstrap Theme</title>
+  <title>NBA Stats - Player Statistic Lookup</title>
   {% load static %}
   <!-- Bootstrap core CSS -->
   <link href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
@@ -39,6 +39,9 @@
 
     <div class="collapse navbar-collapse" id="navb">
       <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="/randPlayer">Random Player</a>
         </li>
@@ -86,6 +89,52 @@
       </h1>
     </div>
   </header>
+
+  <footer class="footer bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+          <ul class="list-inline mb-2">
+            <li class="list-inline-item">
+              <a href="about/">About</a>
+            </li>
+            <li class="list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#">Contact</a>
+            </li>
+            <li class="list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#">Terms of Use</a>
+            </li>
+            <li class="list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#">Privacy Policy</a>
+            </li>
+          </ul>
+          <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>
+        </div>
+        <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item mr-3">
+              <a href="#">
+                <i class="fab fa-facebook fa-2x fa-fw"></i>
+              </a>
+            </li>
+            <li class="list-inline-item mr-3">
+              <a href="#">
+                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-instagram fa-2x fa-fw"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <!-- Bootstrap core JavaScript -->
   <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
