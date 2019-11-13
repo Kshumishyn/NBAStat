@@ -1,6 +1,15 @@
 import django
 from django.conf import settings
-from nbaStat.nbaStat.settings import DATABASES, INSTALLED_APPS
+from nbaStat.nbaStat.settings import DATABASES
+INSTALLED_APPS={
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'nbaStat.player',
+}
 settings.configure(DATABASES=DATABASES, INSTALLED_APPS=INSTALLED_APPS)
 django.setup()
 import json
