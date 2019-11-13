@@ -17,9 +17,7 @@ import sys
 from pprint import pprint as pp
 from nbaStat.player.models import player
 
-print("got here")
 if(len(sys.argv) == 2):
-    print("opening file..")
     j = open(sys.argv[1], 'r')
     file = j.read()
     file = json.loads(file)
