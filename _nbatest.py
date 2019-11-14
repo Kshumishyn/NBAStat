@@ -5,7 +5,17 @@ ht = 'HEIGHT'
 
 def main():
     # this is how you get commonplayer info
-    player_info=commonplayerinfo.CommonPlayerInfo(2544)
+    header = {
+    'Host': 'stats.nba.com',
+    'Connection': 'keep-alive',
+    'Upgrade-Insecure-Requests': '1',
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Referer': 'https://stats.nba.com',
+}
+    player_info=commonplayerinfo.CommonPlayerInfo(player_id=2544, timeout=35, headers=header)
     # alternatively you can do this:
     # player_info=commonplayerinfo.CommonPlayerInfo(player_id=2544)
     # Just a dict of the commonplayer info:
