@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from nba_api.stats.endpoints import commonplayerinfo
+from nba_api.stats.endpoints import playercareerstats
 
 from player.models import player
+from datetime import datetime
 
 header = {
     'Host': 'stats.nba.com',
@@ -12,7 +14,6 @@ header = {
     'Accept-Encoding': 'gzip, deflate, br',
     'Accept-Language': 'en-US,en;q=0.9',
     'Referer': 'https://stats.nba.com',
-
 }
 
 
@@ -22,18 +23,23 @@ def homePage(request):
 
 def playerPage(request):
     name = request.GET.get('player_name')
-    p = player.objects.get(full_name__iexact=name)
-    print(p.full_name)
     
-    player_info = commonplayerinfo.CommonPlayerInfo(player_id=p.id, timeout= 40, headers = header)
-    player_info = player_info.get_normalized_dict()
-    context = {}
-    d = player_info['CommonPlayerInfo'][0]    
-    context = {
-             'Player_Name': p.full_name,
-             'Player_Team' : d['TEAM_CITY'] + " " + d['TEAM_NAME'],
-             'Jersey_Number':d['JERSEY'],
+    # Tries to Query by player's full name
+    try:
+        p = player.objects.get(full_name__iexact=name)
+    except:
+        print("Failed to get " + name)
+        return render(request, 'index.html')
 
+    print("Got " + p.full_name)
+    common_player_info = commonplayerinfo.CommonPlayerInfo(player_id=p.id, timeout=40, headers=header)
+    common_player_info = common_player_info.get_normalized_dict()
+    pi = common_player_info['CommonPlayerInfo'][0]
+    context = {
+            'Player_Name':p.full_name,
+            'Player_Team' :pi['TEAM_CITY'] + " " + pi['TEAM_NAME'],
+            'Jersey_Number':pi['JERSEY'],
+            'Player_Age':int(abs((datetime.now()-datetime.strptime(pi['BIRTHDATE'].split("T")[0],"%Y-%m-%d")).days)/365.24)
     }
     return render(request, 'player.html', context=context)
 
