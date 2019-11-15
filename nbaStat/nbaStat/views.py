@@ -39,7 +39,9 @@ def playerPage(request):
             'Player_Name':p.full_name,
             'Player_Team' :pi['TEAM_CITY'] + " " + pi['TEAM_NAME'],
             'Jersey_Number':pi['JERSEY'],
-            'Player_Age':int(abs((datetime.now()-datetime.strptime(pi['BIRTHDATE'].split("T")[0],"%Y-%m-%d")).days)/365.24)
+            'Player_Age':int(abs((datetime.now()-datetime.strptime(pi['BIRTHDATE'].split("T")[0],"%Y-%m-%d")).days)/365.24),
+            'Player_Height':pi['HEIGHT'],
+            'Player_Weight':pi['WEIGHT'],
     }
     return render(request, 'player.html', context=context)
 
