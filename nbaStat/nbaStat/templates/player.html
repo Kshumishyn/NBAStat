@@ -50,10 +50,10 @@
                     <a class="nav-link" href="/about/">About</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-primary my-2 my-sm-0" type="button">Search</button>
-            </form>
+            <form method="get" action="/player_name/" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" name="player_name" placeholder="Search" required>
+                <input class="btn btn-primary my-2 my-sm-0" type="submit" value="Search">
+              </form>
         </div>
     </nav>
 
@@ -76,35 +76,35 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="card col-12">
-                            <h1 class="mb-5">Player Team</h1>
+                            <h1 class="mb-5">{{Player_Team}}</h1>
                         </div>
                     </div>
                     <div class="card-group" style="height:100%">
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title">
-                                    Jersey Number
+                                    {{Jersey_Number}}
                                 </div>
                             </div>
                         </div>
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title">
-                                    Jersey Number
+                                    {{Player_Age}}
                                 </div>
                             </div>
                         </div>
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title">
-                                    Jersey Number
+                                    {{Player_Height}}
                                 </div>
                             </div>
                         </div>
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title">
-                                    Jersey Number
+                                    {{Seasons_Played}}
                                 </div>
                             </div>
                         </div>

@@ -14,7 +14,7 @@ def main():
     'Accept-Encoding': 'gzip, deflate, br',
     'Accept-Language': 'en-US,en;q=0.9',
     'Referer': 'https://stats.nba.com',
-}
+    }
     player_info=commonplayerinfo.CommonPlayerInfo(player_id=2544, timeout=35, headers=header)
     # alternatively you can do this:
     # player_info=commonplayerinfo.CommonPlayerInfo(player_id=2544)
@@ -99,7 +99,7 @@ def main():
 
 
     # Career stats for Lebron James
-    career = playercareerstats.PlayerCareerStats(player_id=2544)
+    career = playercareerstats.PlayerCareerStats(player_id=2544, timeout= 60, headers=header)
     d3 = career.get_dict()
     
 
