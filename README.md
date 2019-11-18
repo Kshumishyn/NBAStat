@@ -30,7 +30,7 @@ A Repository for the Django/Python Implemented Web Page containing NBA Team and 
 
 
 ### Sprint 4:
-[Sprint 4 Plan](https://docs.google.com/document/d/1COXk3VyuFRoEVnb-JLJxKLkeWnljcLDOGC4WISU71rM/edit?usp=sharing)
+[Sprint 4 Plan](https://docs.google.com/document/d/1COXk3VyuFRoEVnb-JLJxKLkeWnljcLDOGC4WISU71rM/edit?usp=sharing)  
 [Sprint 4 Report](Unavailable)
 
 ## Files/Directories  
