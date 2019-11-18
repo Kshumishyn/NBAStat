@@ -51,5 +51,7 @@ A Repository for the Django/Python Implemented Web Page containing NBA Team and 
 │   ├── Sprint #2 Plan.pdf  
 │   ├── Sprint #2 Report.pdf  
 │   └── Sprint #3 Plan.pdf  
+│   └── Sprint #3 Report.pdf  
+│   └── Sprint #4 Plan.pdf  
 └── README.md  
 ```
