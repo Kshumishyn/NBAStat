@@ -24,24 +24,32 @@ A Repository for the Django/Python Implemented Web Page containing NBA Team and 
 [Sprint 2 Report](https://docs.google.com/document/d/1UtFOsaPV_hweyOPeC5Phii_Mb9HpCiFwD0E-VRr7Ihs/edit?usp=sharing)  
 
 
-### Sprint 2:
+### Sprint 3:
 [Sprint 3 Plan](https://docs.google.com/document/d/1kdrpzKujRP6eHbeuwFmMqcZQ63IMKpuTDUGNrhRC99w/edit?usp=sharing)  
-[Sprint 3 Report](Unavailable)  
+[Sprint 3 Report](https://docs.google.com/document/d/1RCVtMuMpe9iiU4wDPxOQFqN7wDGbUvd1hxNS1fuReTU/edit?usp=sharing)  
 
+
+### Sprint 4:
+[Sprint 4 Plan](https://docs.google.com/document/d/1COXk3VyuFRoEVnb-JLJxKLkeWnljcLDOGC4WISU71rM/edit?usp=sharing)
+[Sprint 4 Report](Unavailable)
 
 ## Files/Directories  
 ```
+├── All_Players.json  
+├── loadJSON.py  
 ├── nbaStat  
 │   ├── db.sqlite3  
 │   ├── manage.py  
 │   ├── nbaStat  
+│   ├── player  
 │   └── static  
-├── nbatest.py  
-├── README.md  
-├── Release Plan.pdf  
-├── Sprint #1 Plan.pdf  
-├── Sprint #1 Report.pdf  
-├── Sprint #2 Plan.pdf  
-├── Sprint #2 Report.pdf  
-└── testing.py  
+├── _nbatest.py  
+├── ProjectDocuments  
+│   ├── Release Plan.pdf  
+│   ├── Sprint #1 Plan.pdf  
+│   ├── Sprint #1 Report.pdf  
+│   ├── Sprint #2 Plan.pdf  
+│   ├── Sprint #2 Report.pdf  
+│   └── Sprint #3 Plan.pdf  
+└── README.md  
 ```
