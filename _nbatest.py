@@ -1,7 +1,17 @@
 from nba_api.stats.static import players 
 from nba_api.stats.endpoints import commonplayerinfo, playercareerstats
+import json
+from pprint import pprint
 name = 'DISPLAY_FIRST_LAST'
 ht = 'HEIGHT'
+
+
+
+def truncate(n, dec):
+    mult = 10 ** dec
+    return int(n* mult)/mult
+
+    #return int(n *1000)/1000
 
 def main():
     # this is how you get commonplayer info
@@ -15,6 +25,146 @@ def main():
     'Accept-Language': 'en-US,en;q=0.9',
     'Referer': 'https://stats.nba.com',
     }
+    player_info = commonplayerinfo.CommonPlayerInfo(player_id=2544, timeout=35, headers = header)
+    
+    career = playercareerstats.PlayerCareerStats(player_id=2544, timeout= 60, headers=header)
+    d3 = career.get_dict()
+    # This prints all data for a player seperated by:
+    # [0] -- SeasonTotalsRegularSeason
+    # [1] -- CareerTotalsRegularSeason
+    # [2] -- SeasonTotalPostSeason
+    # [3] -- CareerTotalsPostSeason
+    # [4] -- CareerTotalsAllStarSeasons
+    # [5] -- SeasonTotalsCollegeSeasons -- NOT RELEVANT
+    # [6] -- CareerTotalsCollegeSeason -- NOT RELEVANT
+    # [7] -- SeasonRankingsRegularSeason -- EX. Lebron was #1 in PTS in 2007-08
+    # [8] -- SeasonRankingPostSeasons 
+    #print("This is a dict of the entirety of the career stats of Lebron: ")
+    #print(d3['resultSets'], "\n\n")   
+
+# This gets a dict of the careertotalRegularstats
+    jData = {}
+    jData["chart"] = {}
+    jData["chart"]["theme"] = "fusion"
+    jData["chart"]["caption"] = "Points per season for LBJ"
+    
+    jData["chart"]["xAxisName"] = "Season"
+    jData["chart"]["yAxisName"] = "Points Per Game"
+    jData["chart"]["data"] = []
+    print("This is a list of the careertotalRegularstats of Lebron: ")
+   # print(d3['resultSets'][0], "\n\n")
+   # print(d3['resultSets'][0]['headers'], "\n\n")
+   # print(d3['resultSets'][0]['rowSet'], "\n\n")
+   # print(d3['resultSets'][0]['rowSet'][-2], "\n\n")
+    for item in d3['resultSets'][0]['rowSet']:
+        season = item[1]
+        #print(season)
+        gp =item[6]
+        pts = item[26]
+        #print("%.1f" % (pts/gp))
+        ppg = {}
+        ppg["label"] = season
+        ppg["value"] = truncate(pts/gp, 1)
+        #print(ppg)
+        jData["chart"]["data"].append(ppg)
+        
+        
+    print(jData, "\n\n\n")
+    
+    
+    jujaData = dict()
+    jujaData["chart"] =dict()
+    jujaData["chart"]["theme"] = "fusion"
+    jujaData["chart"]["caption"] = "Points per season for LBJ"
+    
+    jujaData["chart"]["xAxisName"] = "Season"
+    jujaData["chart"]["yAxisName"] = "Points Per Game"
+    jujaData["categories"] = list()
+    cata = dict()
+    cata["category"] = list()
+    jujaData["categories"].append(cata)
+    jujaData["dataSet"] = list()
+    datem = dict()
+    datem["data"] = list()
+    jujaData["dataSet"].append(datem)
+    print("This is a list of the careertotalRegularstats of Lebron: ")
+    # print(d3['resultSets'][0], "\n\n")
+    # print(d3['resultSets'][0]['headers'], "\n\n")
+    # print(d3['resultSets'][0]['rowSet'], "\n\n")
+    # print(d3['resultSets'][0]['rowSet'][-2], "\n\n")
+    for item in d3['resultSets'][0]['rowSet']:
+        season = item[1]
+        #print(season)
+        gp =item[6]
+        pts = item[26]
+        #print("%.1f" % (pts/gp))
+        ppg =dict()
+        
+        ppg["value"] = truncate(pts/gp, 1)
+        jujaData["dataSet"][0]["data"].append(ppg)
+        kvPair = {"label" : season}
+        jujaData["categories"][0]["category"].append(kvPair)
+        
+         #print(ppg)
+        
+         
+    pprint(jujaData, indent = 2)
+
+    with open('jsonFile', 'w') as outfile:
+        json.dump(jData, outfile)
+        json.dump(jujaData, outfile)
+
+        
+    
+    
+    # Just the headers for the PostSeason
+    # Headers info includes:
+    #
+    # [0] -- PLAYER_ID
+    # [1] -- SEASON_ID -- REFERS TO SPECIFIC SEASON FORMAT EX. '2007-08'
+    # [2] -- LEAGUE_ID -- NOT COMPLETELY SURE WHAT THIS DOES
+    # [3] -- TEAM_ID
+    # [4] -- TEAM_ABBREVIATION
+    # [5] -- PLAYER_AGE
+    # [6] -- GP -- GAMES PLAYED
+    # [7] -- GS -- GAMES STARTED
+    # [8] -- MIN -- MINUTES PER SEASON
+    # [9] -- FGM -- FIELD GOALS MADE
+    # [10] -- FGA -- FIELD GOALS ATTEMPTED
+    # [11] -- FG_PCT -- FIELD GOAL PERCENTAGE
+    # [12] -- FG3M -- FIELD GOAL 3S MADE
+    # [13] -- FG3A -- FIELD GOAL 3S ATTEMPTED
+    # [14] -- FG3_PCT -- FIELD GOAL 3S PERCENTAGE
+    # [15] -- FTM -- FREE THROWS MADE
+    # [16] -- FTA -- FREE THROWS ATTEMPTED
+    # [17 -- FT_PCT -- FREE THROW PERCENTAGE
+    # [18] -- OREB -- OFFENSIVE REBOUNDS
+    # [19] -- DREB -- DEFENSIVE REBOUNDS
+    # [20] -- REB -- TOTAL REBOUNDS
+    # [21] -- AST -- ASSISTS
+    # [22] -- STL -- STEALS
+    # [23] -- BLK -- BLOCKS
+    # [24] -- TOV -- TURNOVERS
+    # [25] -- PF -- PERSONAL FOULS
+    # [26] -- PTS -- POINTS
+    #print("headers format: ")
+    #print(d3['resultSets'][0]['headers'], "\n\n")
+    
+    
+
+
+    # Printing RowSet, who's format follows the headers format
+    # This will print all post seasons Lebron played in
+    #print("This is a list of all seasons that Lebron played in: ")
+    #print(d3['resultSets'][2]['rowSet'])
+
+
+    d2 = player_info.get_dict()
+    print(d2)
+
+
+
+    """
     player_info=commonplayerinfo.CommonPlayerInfo(player_id=2544, timeout=35, headers=header)
     # alternatively you can do this:
     # player_info=commonplayerinfo.CommonPlayerInfo(player_id=2544)
@@ -101,64 +251,7 @@ def main():
     # Career stats for Lebron James
     career = playercareerstats.PlayerCareerStats(player_id=2544, timeout= 60, headers=header)
     d3 = career.get_dict()
-    
-
-    
-    # This prints all data for a player seperated by:
-    # [0] -- SeasonTotalsRegularSeason
-    # [1] -- CareerTotalsRegularSeason
-    # [2] -- SeasonTotalPostSeason
-    # [3] -- CareerTotalsPostSeason
-    # [4] -- CareerTotalsAllStarSeasons
-    # [5] -- SeasonTotalsCollegeSeasons -- NOT RELEVANT
-    # [6] -- CareerTotalsCollegeSeason -- NOT RELEVANT
-    # [7] -- SeasonRankingsRegularSeason -- EX. Lebron was #1 in PTS in 2007-08
-    # [8] -- SeasonRankingPostSeasons 
-    print("This is a dict of the entirety of the career stats of Lebron: ")
-    print(d3['resultSets'], "\n\n")   
-
-    # This gets a dict of the careertotalRegularstats
-    print("This is a list of the careertotalRegularstats of Lebron: ")
-    print(d3['resultSets'][1], "\n\n")
-    
-    # Just the headers for the PostSeason
-    # Headers info includes:
-    #
-    # [0] -- PLAYER_ID
-    # [1] -- SEASON_ID -- REFERS TO SPECIFIC SEASON FORMAT EX. '2007-08'
-    # [2] -- LEAGUE_ID -- NOT COMPLETELY SURE WHAT THIS DOES
-    # [3] -- TEAM_ID
-    # [4] -- TEAM_ABBREVIATION
-    # [5] -- PLAYER_AGE
-    # [6] -- GP -- GAMES PLAYED
-    # [7] -- GS -- GAMES STARTED
-    # [8] -- MIN -- MINUTES PER SEASON
-    # [9] -- FGM -- FIELD GOALS MADE
-    # [10] -- FGA -- FIELD GOALS ATTEMPTED
-    # [11] -- FG_PCT -- FIELD GOAL PERCENTAGE
-    # [12] -- FG3M -- FIELD GOAL 3S MADE
-    # [13] -- FG3A -- FIELD GOAL 3S ATTEMPTED
-    # [14] -- FG3_PCT -- FIELD GOAL 3S PERCENTAGE
-    # [15] -- FTM -- FREE THROWS MADE
-    # [16] -- FTA -- FREE THROWS ATTEMPTED
-    # [17 -- FT_PCT -- FREE THROW PERCENTAGE
-    # [18] -- OREB -- OFFENSIVE REBOUNDS
-    # [19] -- DREB -- DEFENSIVE REBOUNDS
-    # [20] -- REB -- TOTAL REBOUNDS
-    # [21] -- AST -- ASSISTS
-    # [22] -- STL -- STEALS
-    # [23] -- BLK -- BLOCKS
-    # [24] -- TOV -- TURNOVERS
-    # [25] -- PF -- PERSONAL FOULS
-    # [26] -- PTS -- POINTS
-    print("headers format: ")
-    print(d3['resultSets'][2]['headers'], "\n\n")
-
-
-    # Printing RowSet, who's format follows the headers format
-    # This will print all post seasons Lebron played in
-    print("This is a list of all seasons that Lebron played in: ")
-    print(d3['resultSets'][2]['rowSet'])
+    """
 
 
 if __name__ == '__main__':
