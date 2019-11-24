@@ -52,9 +52,9 @@ def queryPlayerPPG(player_id):
     jData["chart"]["theme"] = "fusion"
     jData["chart"]["caption"] = "Points per season for LBJ"
     
-    jData["chart"]["xAxisName"] = "Season"
-    jData["chart"]["yAxisName"] = "Points Per Game"
-    jData["chart"]["data"] = []
+    jData["chart"]["xaxisname"] = "Season"
+    jData["chart"]["yaxisname"] = "Points Per Game"
+    jData["data"] = []
     print("This is a list of the careertotalRegularstats of Lebron: ")
    # print(d3['resultSets'][0], "\n\n")
    # print(d3['resultSets'][0]['headers'], "\n\n")
@@ -70,7 +70,7 @@ def queryPlayerPPG(player_id):
         ppg["label"] = season
         ppg["value"] = truncate(pts/gp, 1)
         #print(ppg)
-        jData["chart"]["data"].append(ppg)
+        jData["data"].append(ppg)
         
         
     print(jData, "\n\n\n")
@@ -114,7 +114,7 @@ def queryPlayerPPG(player_id):
          
         #pprint(jujaData, indent = 2)
 #    column2D = fusioncharts("column2d", "myFirstChart", "640", "480", "myFirstchart-containter", "json", jData);
-    return json.dumps(jData)
+    return json.dumps(jujaData)
 
         
     

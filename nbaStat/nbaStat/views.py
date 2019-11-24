@@ -38,7 +38,7 @@ def playerPage(request):
     common_player_info = common_player_info.get_normalized_dict()
     pi = common_player_info['CommonPlayerInfo'][0]
     ppgJson = _nbatest.queryPlayerPPG(p.id)
-    column2D = FusionCharts("column2d", "myFirstChart", "480", "320", "myFirstchart-containter", "json", json.loads(ppgJson))
+    column2D = FusionCharts("scrollline2d", "myFirstChart", "800", "400", "myFirstchart-containter", "json", json.loads(ppgJson))
     context = {
             'Player_Name':p.full_name,
             'Player_Team' :pi['TEAM_CITY'] + " " + pi['TEAM_NAME'],
@@ -46,7 +46,7 @@ def playerPage(request):
             'Player_Age':int(abs((datetime.now()-datetime.strptime(pi['BIRTHDATE'].split("T")[0],"%Y-%m-%d")).days)/365.24),
             'Player_Height':pi['HEIGHT'],
             'Player_Weight':pi['WEIGHT'],
-            'chart':column2D.render()
+            'chart':column2D.render(),
             
     }
     return render(request, 'player.html', context=context)
