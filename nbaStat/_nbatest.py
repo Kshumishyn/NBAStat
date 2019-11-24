@@ -9,116 +9,23 @@ from collections import OrderedDict
 
 name = 'DISPLAY_FIRST_LAST'
 ht = 'HEIGHT'
-
-
-def truncate(n, dec):
-    mult = 10 ** dec
-    return int(n* mult)/mult
-
-    #return int(n *1000)/1000
-
-def queryPlayerPPG(player_id):
-    # this is how you get commonplayer info
-    header = {
+header = {
     'Host': 'stats.nba.com',
     'Connection': 'keep-alive',
     'Upgrade-Insecure-Requests': '1',
-    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/\
+537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp\
+,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
     'Accept-Encoding': 'gzip, deflate, br',
     'Accept-Language': 'en-US,en;q=0.9',
     'Referer': 'https://stats.nba.com',
-    }
+}
     player_info = commonplayerinfo.CommonPlayerInfo(player_id=2544, timeout=35, headers = header)
-    
-    career = playercareerstats.PlayerCareerStats(player_id=2544, timeout= 60, headers=header)
-    d3 = career.get_dict()
-    # This prints all data for a player seperated by:
-    # [0] -- SeasonTotalsRegularSeason
-    # [1] -- CareerTotalsRegularSeason
-    # [2] -- SeasonTotalPostSeason
-    # [3] -- CareerTotalsPostSeason
-    # [4] -- CareerTotalsAllStarSeasons
-    # [5] -- SeasonTotalsCollegeSeasons -- NOT RELEVANT
-    # [6] -- CareerTotalsCollegeSeason -- NOT RELEVANT
-    # [7] -- SeasonRankingsRegularSeason -- EX. Lebron was #1 in PTS in 2007-08
-    # [8] -- SeasonRankingPostSeasons 
-    #print("This is a dict of the entirety of the career stats of Lebron: ")
-    #print(d3['resultSets'], "\n\n")   
 
-# This gets a dict of the careertotalRegularstats
-    jData = {}
-    jData["chart"] = {}
-    jData["chart"]["theme"] = "fusion"
-    jData["chart"]["caption"] = "Points per season for LBJ"
-    
-    jData["chart"]["xaxisname"] = "Season"
-    jData["chart"]["yaxisname"] = "Points Per Game"
-    jData["data"] = []
-    print("This is a list of the careertotalRegularstats of Lebron: ")
-   # print(d3['resultSets'][0], "\n\n")
-   # print(d3['resultSets'][0]['headers'], "\n\n")
-   # print(d3['resultSets'][0]['rowSet'], "\n\n")
-   # print(d3['resultSets'][0]['rowSet'][-2], "\n\n")
-    for item in d3['resultSets'][0]['rowSet']:
-        season = item[1]
-        #print(season)
-        gp =item[6]
-        pts = item[26]
-        #print("%.1f" % (pts/gp))
-        ppg = {}
-        ppg["label"] = season
-        ppg["value"] = truncate(pts/gp, 1)
-        #print(ppg)
-        jData["data"].append(ppg)
-        
-        
-    print(jData, "\n\n\n")
-    
-    
-    jujaData = dict()
-    jujaData["chart"] =dict()
-    jujaData["chart"]["theme"] = "fusion"
-    jujaData["chart"]["caption"] = "Points per season for LBJ"
-    
-    jujaData["chart"]["xAxisName"] = "Season"
-    jujaData["chart"]["yAxisName"] = "Points Per Game"
-    jujaData["categories"] = list()
-    cata = dict()
-    cata["category"] = list()
-    jujaData["categories"].append(cata)
-    jujaData["dataSet"] = list()
-    datem = dict()
-    datem["data"] = list()
-    jujaData["dataSet"].append(datem)
-    print("This is a list of the careertotalRegularstats of Lebron: ")
-    # print(d3['resultSets'][0], "\n\n")
-    # print(d3['resultSets'][0]['headers'], "\n\n")
-    # print(d3['resultSets'][0]['rowSet'], "\n\n")
-    # print(d3['resultSets'][0]['rowSet'][-2], "\n\n")
-    for item in d3['resultSets'][0]['rowSet']:
-        season = item[1]
-        #print(season)
-        gp =item[6]
-        pts = item[26]
-        #print("%.1f" % (pts/gp))
-        ppg =dict()
-        
-        ppg["value"] = truncate(pts/gp, 1)
-        jujaData["dataSet"][0]["data"].append(ppg)
-        kvPair = {"label" : season}
-        jujaData["categories"][0]["category"].append(kvPair)
-        
-         #print(ppg)
-        
-         
-        #pprint(jujaData, indent = 2)
-#    column2D = fusioncharts("column2d", "myFirstChart", "640", "480", "myFirstchart-containter", "json", jData);
-    return json.dumps(jujaData)
 
-        
-    
-    
+
+
     # Just the headers for the PostSeason
     # Headers info includes:
     #
@@ -149,6 +56,175 @@ def queryPlayerPPG(player_id):
     # [24] -- TOV -- TURNOVERS
     # [25] -- PF -- PERSONAL FOULS
     # [26] -- PTS -- POINTS
+def truncate(n, dec):
+    mult = 10 ** dec
+    return int(n* mult)/mult
+
+def queryTableInfo(pid):
+    career = playercareerstats.PlayerCareerStats(player_id=pid, timeout= 60, headers=header)
+    d = career.get_dict()
+    jData = {}
+    jData["data"] = []
+    for items in d['resultSets'][0]['rowSet']:
+        jData["data"].append({"season":item[1]})
+        jData["data"].append({"team":item[3]})
+        jData["data"].append({"pointsPerGame":truncate(item[26]/item[6], 1)})
+        jData["data"].append({"fieldGoalPercentage":item[11]})
+        jData["data"].append({"fieldGoal3Percentage":item[14]})
+        jData["data"].append({"assistPerGame":item[21]//item[6]})
+        jData["data"].append({"reboundsPerGame":item[20]//item[6]})
+        jData["data"].append({"personalFouls":item[25]})
+    
+    return json.dumps(jData)
+
+
+def queryPlayerFG3PScrollGraph(pid):
+    career = playercareerstats.PlayerCareerStats(player_id=pid, timeout= 60, headers=header)
+    d = career.get_dict()
+    jData = dict()
+    jujaData["chart"] =dict()
+    jujaData["chart"]["theme"] = "fusion"
+    jujaData["chart"]["caption"] = "FG3% per season"
+
+    jujaData["chart"]["xAxisName"] = "Season"
+    jujaData["chart"]["yAxisName"] = "FG3% Per Game"
+    jujaData["categories"] = list()
+    cata = dict()
+    cata["category"] = list()
+    jujaData["categories"].append(cata)
+    jujaData["dataSet"] = list()
+    datem = dict()
+    datem["data"] = list()
+    jujaData["dataSet"].append(datem)
+    #print("This is a list of the careertotalRegularstats of Lebron: ")
+    for item in d['resultSets'][0]['rowSet']:
+        season = item[1]
+        d = {}
+        d["value"] = item[14]
+        jujaData["dataSet"][0]["data"].append(d)
+        kvPair = {"label" : season}
+        jujaData["categories"][0]["category"].append(kvPair)
+    return json.dumps(jujaData)
+    
+
+
+def queryPlayerFGPScrollGraph(pid):
+    career = playercareerstats.PlayerCareerStats(player_id=pid, timeout= 60, headers=header)
+    d = career.get_dict()
+    jData = dict()
+    jujaData["chart"] =dict()
+    jujaData["chart"]["theme"] = "fusion"
+    jujaData["chart"]["caption"] = "FG% per season"
+    jujaData["charts"]["numbersuffix"] = "FG%"
+    jujaData["chart"]["xAxisName"] = "Season"
+    jujaData["chart"]["yAxisName"] = "FG% Per Game"
+    jujaData["categories"] = list()
+    cata = dict()
+    cata["category"] = list()
+    jujaData["categories"].append(cata)
+    jujaData["dataSet"] = list()
+    datem = dict()
+    datem["data"] = list()
+    jujaData["dataSet"].append(datem)
+    #print("This is a list of the careertotalRegularstats of Lebron: ")
+    for item in d['resultSets'][0]['rowSet']:
+        season = item[1]
+        fgp = item[11]
+        d = {}
+        d["value"] = fgp
+        jujaData["dataSet"][0]["data"].append(d)
+        kvPair = {"label" : season}
+        jujaData["categories"][0]["category"].append(kvPair)
+    return json.dumps(jujaData)
+
+
+
+def queryPlayerPPGScrollGraph(pid):
+    career = playercareerstats.PlayerCareerStats(player_id=pid, timeout= 60, headers=header)
+    d = career.get_dict()
+
+    jujaData = dict()
+    jujaData["chart"] =dict()
+    jujaData["chart"]["theme"] = "fusion"
+    jujaData["chart"]["caption"] = "Points per season"
+    jujaData["charts"]["numbersuffix"] = "pts"
+    jujaData["chart"]["xAxisName"] = "Season"
+    jujaData["chart"]["yAxisName"] = "Points Per Game"
+    jujaData["categories"] = list()
+    cata = dict()
+    cata["category"] = list()
+    jujaData["categories"].append(cata)
+    jujaData["dataSet"] = list()
+    datem = dict()
+    datem["data"] = list()
+    jujaData["dataSet"].append(datem)
+    #print("This is a list of the careertotalRegularstats of Lebron: ")
+    for item in d['resultSets'][0]['rowSet']:
+        season = item[1]
+        gp =item[6]
+        pts = item[26]
+        ppg =dict()
+        
+        ppg["value"] = truncate(pts/gp, 1)
+        jujaData["dataSet"][0]["data"].append(ppg)
+        kvPair = {"label" : season}
+        jujaData["categories"][0]["category"].append(kvPair)
+    return json.dumps(jujaData)
+
+
+
+def queryPlayerPPGBarGraph(pid):
+
+    
+    career = playercareerstats.PlayerCareerStats(player_id=pid, timeout= 60, headers=header)
+    d = career.get_dict()
+    # This prints all data for a player seperated by:
+    # [0] -- SeasonTotalsRegularSeason
+    # [1] -- CareerTotalsRegularSeason
+    # [2] -- SeasonTotalPostSeason
+    # [3] -- CareerTotalsPostSeason
+    # [4] -- CareerTotalsAllStarSeasons
+    # [5] -- SeasonTotalsCollegeSeasons -- NOT RELEVANT
+    # [6] -- CareerTotalsCollegeSeason -- NOT RELEVANT
+    # [7] -- SeasonRankingsRegularSeason -- EX. Lebron was #1 in PTS in 2007-08
+    # [8] -- SeasonRankingPostSeasons 
+    #print("This is a dict of the entirety of the career stats of Lebron: ")
+    #print(d3['resultSets'], "\n\n")   
+
+# This gets a dict of the careertotalRegularstats
+    jData = {}
+    jData["chart"] = {}
+    jData["chart"]["theme"] = "fusion"
+    jData["chart"]["caption"] = "Points per season"
+    
+    jData["chart"]["xaxisname"] = "Season"
+    jData["chart"]["yaxisname"] = "Points Per Game"
+    jData["data"] = []
+    #print("This is a list of the careertotalRegularstats of Lebron: ")
+   # print(d3['resultSets'][0], "\n\n")
+   # print(d3['resultSets'][0]['headers'], "\n\n")
+   # print(d3['resultSets'][0]['rowSet'], "\n\n")
+   # print(d3['resultSets'][0]['rowSet'][-2], "\n\n")
+    for item in d3['resultSets'][0]['rowSet']:
+        season = item[1]
+        #print(season)
+        gp =item[6]
+        pts = item[26]
+        #print("%.1f" % (pts/gp))
+        ppg = {}
+        ppg["label"] = season
+        ppg["value"] = truncate(pts/gp, 1)
+        #print(ppg)
+        jData["data"].append(ppg)
+#    print(jData, "\n\n\n")
+        #pprint(jujaData, indent = 2)
+#    column2D = fusioncharts("column2d", "myFirstChart", "640", "480", "myFirstchart-containter", "json", jData);
+    return json.dumps(jData)
+
+        
+    
+def main():   
+
     #print("headers format: ")
     #print(d3['resultSets'][0]['headers'], "\n\n")
     
