@@ -21,7 +21,7 @@ header = {
     'Accept-Language': 'en-US,en;q=0.9',
     'Referer': 'https://stats.nba.com',
 }
-    player_info = commonplayerinfo.CommonPlayerInfo(player_id=2544, timeout=35, headers = header)
+#player_info = commonplayerinfo.CommonPlayerInfo(player_id=2544, timeout=35, headers = header)
 
 
 
@@ -65,7 +65,7 @@ def queryTableInfo(pid):
     d = career.get_dict()
     jData = {}
     jData["data"] = []
-    for items in d['resultSets'][0]['rowSet']:
+    for item in d['resultSets'][0]['rowSet']:
         jData["data"].append({"season":item[1]})
         jData["data"].append({"team":item[3]})
         jData["data"].append({"pointsPerGame":truncate(item[26]/item[6], 1)})
@@ -115,7 +115,7 @@ def queryPlayerFGPScrollGraph(pid):
     jujaData["chart"] =dict()
     jujaData["chart"]["theme"] = "fusion"
     jujaData["chart"]["caption"] = "FG% per season"
-    jujaData["charts"]["numbersuffix"] = "FG%"
+    jujaData["chart"]["numbersuffix"] = "FG%"
     jujaData["chart"]["xAxisName"] = "Season"
     jujaData["chart"]["yAxisName"] = "FG% Per Game"
     jujaData["categories"] = list()
@@ -147,7 +147,7 @@ def queryPlayerPPGScrollGraph(pid):
     jujaData["chart"] =dict()
     jujaData["chart"]["theme"] = "fusion"
     jujaData["chart"]["caption"] = "Points per season"
-    jujaData["charts"]["numbersuffix"] = "pts"
+    jujaData["chart"]["numbersuffix"] = "pts"
     jujaData["chart"]["xAxisName"] = "Season"
     jujaData["chart"]["yAxisName"] = "Points Per Game"
     jujaData["categories"] = list()
