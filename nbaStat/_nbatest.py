@@ -83,7 +83,7 @@ def queryPlayerFG3PScrollGraph(pid):
     d = career.get_dict()
     jData = dict()
     jujaData["chart"] =dict()
-    jujaData["chart"]["theme"] = "fusion"
+    jujaData["chart"]["theme"] = "candy"
     jujaData["chart"]["caption"] = "FG3% per season"
 
     jujaData["chart"]["xAxisName"] = "Season"
@@ -144,12 +144,16 @@ def queryPlayerPPGScrollGraph(pid):
     d = career.get_dict()
 
     jujaData = dict()
-    jujaData["chart"] =dict()
-    jujaData["chart"]["theme"] = "fusion"
+    jujaData["chart"] = dict()
+    jujaData["chart"]["theme"] = "candy"
     jujaData["chart"]["caption"] = "Points per season"
     jujaData["chart"]["numbersuffix"] = "pts"
     jujaData["chart"]["xAxisName"] = "Season"
     jujaData["chart"]["yAxisName"] = "Points Per Game"
+    jujaData["chart"]["exportenabled"]= "1"
+    jujaData["chart"]["exportmode"] = "client"
+    jujaData["chart"]["exportfilename"] = "{}PPG".format(pid)
+    
     jujaData["categories"] = list()
     cata = dict()
     cata["category"] = list()

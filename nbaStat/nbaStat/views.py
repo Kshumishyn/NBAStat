@@ -32,14 +32,15 @@ def playerPage(request):
     except:
         print("Failed to get " + name)
         return render(request, 'index.html')
-
+     
     print("Got " + p.full_name)
     common_player_info = commonplayerinfo.CommonPlayerInfo(player_id=p.id, timeout=40, headers=header)
     common_player_info = common_player_info.get_normalized_dict()
     pi = common_player_info['CommonPlayerInfo'][0]
-    ppgJson = _nbatest.queryPlayerPPG(p.id)
+    ppgJson = _nbatest.queryPlayerPPGScrollGraph(p.id)
     column2D = FusionCharts("scrollline2d", "myFirstChart", "800", "400", "myFirstchart-containter", "json", json.loads(ppgJson))
     context = {
+            'Headshot_URL':"https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{}.png".format(p.id),
             'Player_Name':p.full_name,
             'Player_Team' :pi['TEAM_CITY'] + " " + pi['TEAM_NAME'],
             'Jersey_Number':pi['JERSEY'],
