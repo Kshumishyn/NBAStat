@@ -5,6 +5,7 @@ import _nbatest
 from player.models import player
 from datetime import datetime
 from fusioncharts import FusionCharts
+from nba_api.stats.static import players
 import json
 
 header = {
@@ -31,7 +32,37 @@ def playerPage(request):
         p = player.objects.get(full_name__iexact=name)
     except:
         print("Failed to get " + name)
-        return render(request, 'index.html')
+        full_name = name.split(' ')
+        first_name = ""
+        last_name = ""
+        context = {}
+        results = {}
+        print(full_name)
+        if len(full_name) == 1:
+            first_name = full_name[0]
+            p1 = players.find_players_by_first_name(first_name)
+            print("p1:", p1)
+
+            for p in p1:
+                results[p['full_name']] = p['full_name']
+                
+        elif len(full_name) == 2:
+            first_name = full_name[0]
+            last_name = full_name[1]
+            p1 = players.find_players_by_first_name(first_name)
+            p2 = players.find_players_by_last_name(last_name)
+            print("p1:", p1)
+            print("p2:", p2)
+
+            for p in p1:
+                results[p['full_name']] = p['full_name']
+            for p in p2:
+                results[p['full_name']] = p['full_name']
+
+        #print('results', results)
+        context['results'] = results
+        print("context", context)
+        return render(request, 'results.html', context=context)
      
     print("Got " + p.full_name)
     common_player_info = commonplayerinfo.CommonPlayerInfo(player_id=p.id, timeout=40, headers=header)

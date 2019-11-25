@@ -53,8 +53,13 @@
     </nav>
 
 
-
-
+    <div> Couldn't find player, list of similar players:
+        <select> 
+            {% for k in results%}
+                <option> {{k}} </option>
+            {% endfor %}
+        </select>
+    </div>
 
 
     <!-- Bootstrap core JavaScript -->
