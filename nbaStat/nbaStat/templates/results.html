@@ -54,12 +54,23 @@
 
 
     <div> Couldn't find player, list of similar players:
-        <select> 
+        <select id="selection"> 
+            <option> Other </option>
             {% for k in results%}
                 <option> {{k}} </option>
             {% endfor %}
         </select>
     </div>
+   
+    <button id="userSelected" onclick="playerChoosen()" type="button"> Select </button>
+
+    <script>
+        function playerChoosen() {
+            var selector = document.getElementById("selection");
+            var itemSelected = selector.options[selector.selectedIndex].value;
+            alert("You choose " + itemSelected);
+        }
+    </script>
 
 
     <!-- Bootstrap core JavaScript -->
