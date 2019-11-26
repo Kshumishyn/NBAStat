@@ -64,17 +64,16 @@ def queryTableInfo(pid):
     career = playercareerstats.PlayerCareerStats(player_id=pid, timeout= 60, headers=header)
     d = career.get_dict()
     jData = {}
-    jData["data"] = []
     for item in d['resultSets'][0]['rowSet']:
-        jData["data"].append({"season":item[1]})
-        jData["data"].append({"team":item[3]})
-        jData["data"].append({"pointsPerGame":truncate(item[26]/item[6], 1)})
-        jData["data"].append({"fieldGoalPercentage":item[11]})
-        jData["data"].append({"fieldGoal3Percentage":item[14]})
-        jData["data"].append({"assistPerGame":item[21]//item[6]})
-        jData["data"].append({"reboundsPerGame":item[20]//item[6]})
-        jData["data"].append({"personalFouls":item[25]})
-    
+        jData[item[1]] = {}
+        jData[item[1]]["team"] = item[3]
+        jData[item[1]]["pointPerGame"] = truncate(item[26]/item[6], 1)
+        jData[item[1]]["fieldGoalPercentage"] = item[11]
+        jData[item[1]]["fieldGoal3Percentage"] = item[14]
+        jData[item[1]]["assistsPerGame"] = item[21]//item[6]
+        jData[item[1]]["reboundsPerGame"] = item[20]//item[6]
+        jData[item[1]]["personalFouls"] = item[25]
+    pprint(jData, indent=2)
     return jData
 
 
@@ -244,8 +243,8 @@ def main():
     #print(d3['resultSets'][2]['rowSet'])
 
 
-    d2 = player_info.get_dict()
-    print(d2)
+    #d2 = player_info.get_dict()
+    #print(d2)
 
 
 
@@ -340,4 +339,5 @@ def main():
 
 
 if __name__ == '__main__':
+    queryTableInfo(2544)
     main()
