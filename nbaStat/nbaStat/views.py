@@ -90,11 +90,11 @@ def playerPage(request):
             'Player_Weight':pi['WEIGHT'],
             'chart1':scroll2D_1.render(),
             'chart2':scroll2d_2.render(),
+            'stats':stat_table,
             
 
             
     }
-    pp(stat_table)
     return render(request, 'player.html', context=context)
 
 

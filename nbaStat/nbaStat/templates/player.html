@@ -72,7 +72,7 @@
                 <img class="card-img-top " src={{Headshot_URL}}>
                 <div class="card-body">
                     <div class="card-title">
-                        <h1 class="text-white display-4">
+                        <h1 class="text-white display-4" style="font-weight: bold;">
                             {{Player_Name}} #{{Jersey_Number}}
                         </h1>
                     </div>
@@ -83,8 +83,10 @@
                     <div class="row">
                         <div class="card col-12 border-0 bg-dark">
                             <h1 class="mb-5 display-2 ">
-                                <span class="{{Player_Team_abbv}} city" style="font-weight: bold;">{{Player_Team_City}}</span>
-                                <span class="{{Player_Team_abbv}} name"style="font-weight: bold;">{{Player_Team_Name}}</span>
+                                <span class="{{Player_Team_abbv}} city"
+                                    style="font-weight: bold;">{{Player_Team_City}}</span>
+                                <span class="{{Player_Team_abbv}} name"
+                                    style="font-weight: bold;">{{Player_Team_Name}}</span>
                             </h1>
                         </div>
                     </div>
@@ -131,9 +133,9 @@
     </header>
 
     <!--Coming Soon-->
-    <div class="container-fluid p-4" style="background: url('{% static ' ' %}{{Logo_URL}}'); background-repeat: no-repeat;
+    <div class="container-fluid p-4" style="background: url('{% static '' %}{{Logo_URL}}'); background-repeat: no-repeat;
     background-size:contain;background-attachment:local;background-position:center;">
-        <div class="row">
+        <div class="row p-4">
             <div class="col-6 mx-auto">
                 <div id="chart-containter-1">{{chart1|safe}}</div>
             </div>
@@ -141,6 +143,38 @@
                 <div id="chart-container-2">{{chart2|safe}}</div>
             </div>
         </div>
+        <table class="table table-dark table-striped p-4">
+            <thead>
+                <tr>
+                    <th>Season</th>
+                    <th>APG</th>
+                    <th>FG3%</th>
+                    <th>FG%</th>
+                    <th>PF</th>
+                    <th>PPG</th>
+                    <th>RPG</th>
+                    <th>TEAM</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                
+                    {% for season,values in stats.items %}
+                    <tr>
+                    <td>{{ season }}</td>
+                        {%for key, val in values.items%}
+                              <td>{{val}}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                
+            
+                
+            </tbody>
+        </table>
+
+
+
     </div>
     <footer class="footer bg-light">
         <div class="container">

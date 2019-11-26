@@ -66,14 +66,21 @@ def queryTableInfo(pid):
     jData = {}
     for item in d['resultSets'][0]['rowSet']:
         jData[item[1]] = {}
-        jData[item[1]]["team"] = item[3]
+        jData[item[1]]["team"] = item[4]
         jData[item[1]]["pointPerGame"] = truncate(item[26]/item[6], 1)
         jData[item[1]]["fieldGoalPercentage"] = item[11]
         jData[item[1]]["fieldGoal3Percentage"] = item[14]
         jData[item[1]]["assistsPerGame"] = item[21]//item[6]
         jData[item[1]]["reboundsPerGame"] = item[20]//item[6]
         jData[item[1]]["personalFouls"] = item[25]
-    pprint(jData, indent=2)
+        
+   # pprint(jData, indent=2)
+    for season, values in jData.items():
+        print(season,values)
+        for k , v in values.items():
+            print(v)
+            
+            
     return jData
 
 
