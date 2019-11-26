@@ -2,6 +2,7 @@ from django.shortcuts import render
 from nba_api.stats.endpoints import commonplayerinfo
 from nba_api.stats.endpoints import playercareerstats
 import _nbatest
+from pprint import pprint as pp
 from player.models import player
 from nba_api.stats.static import players
 from datetime import datetime
@@ -73,7 +74,7 @@ def playerPage(request):
     ppgJson = _nbatest.queryPlayerPPGScrollGraph(p.id)
     fgpercent = _nbatest.queryPlayerFGPScrollGraph(p.id)
     logo_url = "img/Team_Logos/{}.png".format(str.lower(pi['TEAM_ABBREVIATION']))
-
+    stat_table = _nbatest.queryTableInfo(p.id)
     scroll2D_1 = FusionCharts("scrollline2d", "Chart1", "600", "400", "chart-containter-1", "json", json.loads(ppgJson))
     scroll2d_2 = FusionCharts("scrollline2d", "Chart2", "600", "400","chart-container-2","json",json.loads(fgpercent))
     context = {
@@ -88,10 +89,12 @@ def playerPage(request):
             'Player_Height':pi['HEIGHT'],
             'Player_Weight':pi['WEIGHT'],
             'chart1':scroll2D_1.render(),
-            'chart2':scroll2d_2.render()
+            'chart2':scroll2d_2.render(),
+            
 
             
     }
+    pp(stat_table)
     return render(request, 'player.html', context=context)
 
 

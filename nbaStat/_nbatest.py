@@ -75,7 +75,7 @@ def queryTableInfo(pid):
         jData["data"].append({"reboundsPerGame":item[20]//item[6]})
         jData["data"].append({"personalFouls":item[25]})
     
-    return json.dumps(jData)
+    return jData
 
 
 def queryPlayerFG3PScrollGraph(pid):
