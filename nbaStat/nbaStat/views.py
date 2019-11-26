@@ -3,9 +3,9 @@ from nba_api.stats.endpoints import commonplayerinfo
 from nba_api.stats.endpoints import playercareerstats
 import _nbatest
 from player.models import player
+from nba_api.stats.static import players
 from datetime import datetime
 from fusioncharts import FusionCharts
-from nba_api.stats.static import players
 import json
 
 header = {
@@ -32,6 +32,7 @@ def playerPage(request):
         p = player.objects.get(full_name__iexact=name)
     except:
         print("Failed to get " + name)
+        
         full_name = name.split(' ')
         first_name = ""
         last_name = ""
@@ -64,21 +65,31 @@ def playerPage(request):
         print("context", context)
         return render(request, 'results.html', context=context)
      
+
     print("Got " + p.full_name)
     common_player_info = commonplayerinfo.CommonPlayerInfo(player_id=p.id, timeout=40, headers=header)
     common_player_info = common_player_info.get_normalized_dict()
     pi = common_player_info['CommonPlayerInfo'][0]
     ppgJson = _nbatest.queryPlayerPPGScrollGraph(p.id)
-    column2D = FusionCharts("scrollline2d", "myFirstChart", "800", "400", "myFirstchart-containter", "json", json.loads(ppgJson))
+    fgpercent = _nbatest.queryPlayerFGPScrollGraph(p.id)
+    logo_url = "img/Team_Logos/{}.png".format(str.lower(pi['TEAM_ABBREVIATION']))
+
+    scroll2D_1 = FusionCharts("scrollline2d", "Chart1", "600", "400", "chart-containter-1", "json", json.loads(ppgJson))
+    scroll2d_2 = FusionCharts("scrollline2d", "Chart2", "600", "400","chart-container-2","json",json.loads(fgpercent))
     context = {
+            'Logo_URL':logo_url,
             'Headshot_URL':"https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{}.png".format(p.id),
             'Player_Name':p.full_name,
-            'Player_Team' :pi['TEAM_CITY'] + " " + pi['TEAM_NAME'],
+            'Player_Team_City' :pi['TEAM_CITY'],
+            'Player_Team_Name': pi['TEAM_NAME'],
+            'Player_Team_abbv':pi['TEAM_ABBREVIATION'],
             'Jersey_Number':pi['JERSEY'],
             'Player_Age':int(abs((datetime.now()-datetime.strptime(pi['BIRTHDATE'].split("T")[0],"%Y-%m-%d")).days)/365.24),
             'Player_Height':pi['HEIGHT'],
             'Player_Weight':pi['WEIGHT'],
-            'chart':column2D.render(),
+            'chart1':scroll2D_1.render(),
+            'chart2':scroll2d_2.render()
+
             
     }
     return render(request, 'player.html', context=context)

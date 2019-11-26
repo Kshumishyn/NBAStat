@@ -1,0 +1,245 @@
+
+.ATL.city{ 
+    color:white;
+}
+
+.ATL.name{
+    color:#e03a3e;
+}
+
+.BOS.city{
+    color:white;
+}
+
+.BOS.name{
+    color:#008348;
+}
+
+.BKN.city{
+    color:white;
+}
+
+.BKN.name{
+    color:black;
+}
+
+.CHA.city{
+    color:#00788c;
+}
+
+.CHA.name{
+    color:#1d1160;
+}
+
+.CHI.city{
+    color:#ce1141;
+}
+
+.CHI.name{
+    color:black;
+}
+
+.CLE.city{
+    color:#6f2633;
+    
+}
+
+.CLE.name{
+    color:#ffb81c;
+}
+
+.DAL.city{
+    color:#007dc5;
+}
+
+.DAL.name{
+    color:#c4ced4;
+}
+
+.DEN.city{
+    color:#ffc627;
+}
+
+.DEN.name{
+    color:#244289;
+}
+
+.DET.city{
+    color:#1d428a;
+}
+
+.DET.name{
+    color:#c8102e;
+}
+
+.GSW.city{
+    color:#fdb927;
+}
+
+.GSW.name{
+    color:#006bb6;
+}
+.HOU.city{
+    color: black;
+}
+
+.HOU.name{
+    color:#ce1141;
+}
+
+.IND.city{
+    color:#fdbb30;
+}
+
+.IND.name{
+    color:#002d62;
+}
+
+.LAC.city{
+    color:#c8102e;
+}
+
+.LAC.name{
+    color:#1d428a;
+}
+
+.LAL.city{
+    color:#fdb927;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.LAL.name{
+    color:#552583;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    
+}
+
+.MEM.city{
+    color:#5d76a9
+}
+
+.MEM.name{
+    color:#12173f
+}
+
+.MIA.city{
+    color:#f9a01b
+}
+
+.MIA.name{
+    color:#98002e
+}
+
+.MIL.city{
+    color:#eee1c6
+}
+
+.MIL.name{
+    color:#00471b
+}
+
+.MIN.city{
+    color:#236192
+}
+
+.MIN.name{
+    color:#9ea2a2
+}
+
+.NOP.city{
+    color:#e31837;
+}
+
+.NOP.name{
+    
+    color:#b4975a;
+}
+
+.NYK.city{
+    color:#006bb6
+}
+
+.NYK.name{
+    color:#f58426
+}
+
+.OKC.city{
+    color:#ef3b24;
+}
+
+.OKC.name{
+    color:#002d62;
+}
+
+.ORL.city{
+    color:#0b77bd;
+}
+
+.ORL.name{
+    color:#c2ccd2;
+}
+
+.PHI.city{
+    color:#006bb6;
+}
+
+.PHI.name{
+    color:white;
+}
+
+.PHX.city{
+    color:#f9a01b;
+}
+
+.PHX.name{
+    color:black;
+}
+
+.POR.city{
+    color:#e03a3e;
+}
+
+.POR.name{
+    color:black;
+}
+
+.SAC.city{
+    color:#63727a;
+}
+
+.SAC.name{
+    color:#5a2b81;
+}
+
+.SAS.city{
+    color:black;
+}
+
+.SAS.name{
+    color:#c4ced4;
+}
+
+.TOR.city{
+    color:#cd1141;
+}
+
+.TOR.name{
+    color:white;
+}
+
+.UTA.city{
+    color:#2b5134;
+}
+
+.UTA.name{
+    color:#002b5c;
+}
+
+.WAS.city{
+    color:#002b5c
+}
+
+.WAS.name{
+    color:#e31837;
+}
+

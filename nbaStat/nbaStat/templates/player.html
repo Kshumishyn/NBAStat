@@ -24,6 +24,7 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static "css/landing-page.min.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "css/player-teams-colors.css" %}">
     <script type="text/javascript" src="{% static "/fusioncharts.js" %}"></script>
     <script type="text/javascript" src="{% static "/fusioncharts.charts.js" %}"></script>
     <script type="text/javascript" src="{% static "/themes/fusioncharts.theme.candy.js" %}"></script>
@@ -47,6 +48,9 @@
         <div class="collapse navbar-collapse" id="navb">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/randPlayer">Random Player</a>
                 </li>
                 <li class="nav-item">
@@ -56,7 +60,7 @@
             <form method="get" action="/player_name/" class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" name="player_name" placeholder="Search" required>
                 <input class="btn btn-primary my-2 my-sm-0" type="submit" value="Search">
-              </form>
+            </form>
         </div>
     </nav>
 
@@ -65,11 +69,11 @@
     <div class="container-fluid bg-dark p-3">
         <div class="row">
             <div class="card col-3 bg-dark border-0">
-                <img class="card-img-top" src={{Headshot_URL}}>
+                <img class="card-img-top " src={{Headshot_URL}}>
                 <div class="card-body">
                     <div class="card-title">
                         <h1 class="text-white display-4">
-                            {{Player_Name}}
+                            {{Player_Name}} #{{Jersey_Number}}
                         </h1>
                     </div>
                 </div>
@@ -77,36 +81,39 @@
             <div class="col-9">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="card col-12">
-                            <h1 class="mb-5">{{Player_Team}}</h1>
+                        <div class="card col-12 border-0 bg-dark">
+                            <h1 class="mb-5 display-2 ">
+                                <span class="{{Player_Team_abbv}} city" style="font-weight: bold;">{{Player_Team_City}}</span>
+                                <span class="{{Player_Team_abbv}} name"style="font-weight: bold;">{{Player_Team_Name}}</span>
+                            </h1>
                         </div>
                     </div>
                     <div class="card-group" style="height:100%">
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title ">
-                                   <h1>Jersery Number: {{Jersey_Number}}</h1> 
+                                    <h1>Jersery Number: {{Jersey_Number}}</h1>
                                 </div>
                             </div>
                         </div>
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title">
-                                   Age: {{Player_Age}}
+                                    Age: {{Player_Age}}
                                 </div>
                             </div>
                         </div>
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title">
-                                   Height: {{Player_Height}}
+                                    Height: {{Player_Height}}
                                 </div>
                             </div>
                         </div>
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title">
-                                   Weight: {{Player_Weight}}
+                                    Weight: {{Player_Weight}}
                                 </div>
                             </div>
                         </div>
@@ -124,14 +131,63 @@
     </header>
 
     <!--Coming Soon-->
-    <header class="jumbotron">
+    <div class="container-fluid p-4" style="background: url('{% static '' %}{{Logo_URL}}'); background-repeat: no-repeat;
+    background-size:contain; background-attachment:local;background-position: center;">
         <div class="row">
-            <h1 class="col-9 mx-auto">
-                <div id="myFirstchart-containter">{{chart|safe}}</div>
-            </h1>
+            <div class="col-6 mx-auto">
+                <div id="chart-containter-1">{{chart1|safe}}</div>
+            </div>
+            <div class="col-6 mx-auto">
+                <div id="chart-container-2">{{chart2|safe}}</div>
+            </div>
         </div>
-    </header>
-
+    </div>
+    <footer class="footer bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                    <ul class="list-inline mb-2">
+                        <li class="list-inline-item">
+                            <a href="about/">About</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Contact</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Terms of Use</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Privacy Policy</a>
+                        </li>
+                    </ul>
+                    <a class="link text-muted small mb-4 mb-lg-0" href="https://startbootstrap.com/themes/">&copy;
+                        Website template from startbootstrap.com</a>
+                </div>
+                <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item mr-3">
+                            <a href="#">
+                                <i class="fab fa-facebook fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item mr-3">
+                            <a href="#">
+                                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fab fa-instagram fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
     <!-- Bootstrap core JavaScript -->
     <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
     <script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>

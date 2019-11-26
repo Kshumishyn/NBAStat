@@ -9,6 +9,10 @@ body {
   background-color: #bdbdc4;
 }
 
+.bg-dark{
+  color:#262a33
+}
+
 h1,
 h2,
 h3,
@@ -21,7 +25,7 @@ h6 {
 
 header.masthead {
   position: relative;
-  background-color: #252526;
+  background-color: #212529;
   background: url("../img/logoalone.png") no-repeat center center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -127,3 +131,4 @@ footer.footer {
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
+

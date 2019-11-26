@@ -111,13 +111,16 @@ def queryPlayerFG3PScrollGraph(pid):
 def queryPlayerFGPScrollGraph(pid):
     career = playercareerstats.PlayerCareerStats(player_id=pid, timeout= 60, headers=header)
     d = career.get_dict()
-    jData = dict()
+    jujaData = dict()
     jujaData["chart"] =dict()
-    jujaData["chart"]["theme"] = "fusion"
+    jujaData["chart"]["theme"] = "candy"
     jujaData["chart"]["caption"] = "FG% per season"
     jujaData["chart"]["numbersuffix"] = "FG%"
     jujaData["chart"]["xAxisName"] = "Season"
     jujaData["chart"]["yAxisName"] = "FG% Per Game"
+    jujaData["chart"]["exportenabled"]= "1"
+    jujaData["chart"]["exportmode"] = "client"
+    jujaData["chart"]["exportfilename"] = "{}PPG".format(pid)
     jujaData["categories"] = list()
     cata = dict()
     cata["category"] = list()

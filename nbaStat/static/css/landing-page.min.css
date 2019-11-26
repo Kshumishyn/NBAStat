@@ -19,7 +19,7 @@ h6 {
 
 header.masthead {
     position: relative;
-    background-color: #252526;
+    background-color: #262a33;
     background: url(../img/logoalone.png) no-repeat center center;
     background-size: auto;
     background-repeat: no-repeat;
@@ -29,7 +29,7 @@ header.masthead {
 
 header.masthead .overlay {
     position: absolute;
-    background-color: #212529;
+    background-color: #262a33;
     height: 100%;
     width: 100%;
     top: 0;

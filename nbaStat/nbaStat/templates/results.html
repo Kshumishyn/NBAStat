@@ -39,6 +39,9 @@
         <div class="collapse navbar-collapse" id="navb">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/randPlayer">Random Player</a>
                 </li>
                 <li class="nav-item">
@@ -54,14 +57,14 @@
 
 
     <div> Couldn't find player, list of similar players:
-        <select id="selection"> 
+        <select id="selection">
             <option> Other </option>
             {% for k in results%}
-                <option> {{k}} </option>
+            <option> {{k}} </option>
             {% endfor %}
         </select>
     </div>
-   
+
     <button id="userSelected" onclick="playerChoosen()" type="button"> Select </button>
 
     <script>
