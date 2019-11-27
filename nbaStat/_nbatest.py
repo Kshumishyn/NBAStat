@@ -65,6 +65,11 @@ def queryTableInfo(pid):
     d = career.get_dict()
     jData = {}
     for item in sorted(d['resultSets'][0]['rowSet']):
+        if item[1] in jData:
+            item[1] = item[1] + "-" + str(i)
+            i+=1
+        else:
+            i=1
         jData[item[1]] = {}
         jData[item[1]]["team"] = item[4]
         jData[item[1]]["pointPerGame"] = truncate(item[26]/item[6], 1)
