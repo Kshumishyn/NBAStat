@@ -64,7 +64,7 @@ def queryTableInfo(pid):
     career = playercareerstats.PlayerCareerStats(player_id=pid, timeout= 60, headers=header)
     d = career.get_dict()
     jData = {}
-    for item in d['resultSets'][0]['rowSet']:
+    for item in sorted(d['resultSets'][0]['rowSet']):
         jData[item[1]] = {}
         jData[item[1]]["team"] = item[4]
         jData[item[1]]["pointPerGame"] = truncate(item[26]/item[6], 1)
@@ -74,14 +74,11 @@ def queryTableInfo(pid):
         jData[item[1]]["reboundsPerGame"] = item[20]//item[6]
         jData[item[1]]["personalFouls"] = item[25]
         
-   # pprint(jData, indent=2)
-    for season, values in jData.items():
-        print(season,values)
-        for k , v in values.items():
-            print(v)
-            
-            
-    return jData
+    pprint(jData, indent=2)
+    Data = dict()
+    for key in sorted(jData.keys(),reverse = True):
+        Data[key] = jData[key]
+    return Data
 
 
 def queryPlayerFG3PScrollGraph(pid):

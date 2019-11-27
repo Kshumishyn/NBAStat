@@ -72,6 +72,7 @@ def playerPage(request):
     common_player_info = common_player_info.get_normalized_dict()
     pi = common_player_info['CommonPlayerInfo'][0]
     ppgJson = _nbatest.queryPlayerPPGScrollGraph(p.id)
+    pp(ppgJson)
     fgpercent = _nbatest.queryPlayerFGPScrollGraph(p.id)
     logo_url = "img/Team_Logos/{}.png".format(str.lower(pi['TEAM_ABBREVIATION']))
     stat_table = _nbatest.queryTableInfo(p.id)
@@ -90,10 +91,7 @@ def playerPage(request):
             'Player_Weight':pi['WEIGHT'],
             'chart1':scroll2D_1.render(),
             'chart2':scroll2d_2.render(),
-            'stats':stat_table,
-            
-
-            
+            'stats':stat_table,        
     }
     return render(request, 'player.html', context=context)
 

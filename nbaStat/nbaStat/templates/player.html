@@ -28,7 +28,7 @@
     <script type="text/javascript" src="{% static "/fusioncharts.js" %}"></script>
     <script type="text/javascript" src="{% static "/fusioncharts.charts.js" %}"></script>
     <script type="text/javascript" src="{% static "/themes/fusioncharts.theme.candy.js" %}"></script>
-
+    <script type="text/javascript" src="{% static "/themes/fusioncharts.theme.ocean.js" %}"></script>
 
 </head>
 
@@ -91,30 +91,23 @@
                         </div>
                     </div>
                     <div class="card-group" style="height:100%">
-                        <div class="card">
+                        <div class="card bg-dark border-0">
                             <div class="card-body">
-                                <div class="card-title ">
-                                    <h1>Jersery Number: {{Jersey_Number}}</h1>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-title">
+                                <div class="card-title display-4" style="font-weight: bold;color:white; text-align: center;">
                                     Age: {{Player_Age}}
                                 </div>
                             </div>
                         </div>
-                        <div class="card">
+                        <div class="card bg-dark border-0">
                             <div class="card-body">
-                                <div class="card-title">
+                                <div class="card-title display-4" style="font-weight: bold;color:white; text-align: center;">
                                     Height: {{Player_Height}}
                                 </div>
                             </div>
                         </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-title">
+                        <div class="card bg-dark border-0">
+                            <div class="card-body ">
+                                <div class="card-title display-4" style="font-weight: bold;color:white; text-align: center;">
                                     Weight: {{Player_Weight}}
                                 </div>
                             </div>
@@ -147,13 +140,13 @@
             <thead>
                 <tr>
                     <th>Season</th>
-                    <th>APG</th>
-                    <th>FG3%</th>
-                    <th>FG%</th>
-                    <th>PF</th>
-                    <th>PPG</th>
-                    <th>RPG</th>
                     <th>TEAM</th>
+                    <th>PPG%</th>
+                    <th>FG%</th>
+                    <th>FG3%</th>
+                    <th>APG</th>
+                    <th>RPG</th>
+                    <th>PF</th>
 
                 </tr>
             </thead>
