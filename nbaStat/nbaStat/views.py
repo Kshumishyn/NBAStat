@@ -39,6 +39,7 @@ def playerPage(request):
         last_name = ""
         context = {}
         results = {}
+        urls = {}
         print(full_name)
         if len(full_name) == 1:
             first_name = full_name[0]
@@ -46,7 +47,8 @@ def playerPage(request):
             print("p1:", p1)
 
             for p in p1:
-                results[p['full_name']] = p['full_name']
+                name = p['full_name'].replace(" ", "+")
+                results[p['full_name']] = "http://localhost:8000/player_name/?player_name=" + name
                 
         elif len(full_name) == 2:
             first_name = full_name[0]
@@ -57,9 +59,12 @@ def playerPage(request):
             print("p2:", p2)
 
             for p in p1:
-                results[p['full_name']] = p['full_name']
+                name = p['full_name'].replace(" ", "+")
+                results[p['full_name']] = "http://localhost:8000/player_name/?player_name=" + name
             for p in p2:
-                results[p['full_name']] = p['full_name']
+                name = p['full_name'].replace(" ", "+")
+                results[p['full_name']] = "http://localhost:8000/player_name/?player_name=" + name
+
 
         #print('results', results)
         context['results'] = results
