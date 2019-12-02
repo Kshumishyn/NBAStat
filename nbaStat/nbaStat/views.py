@@ -81,7 +81,7 @@ def playerPage(request):
     ppgJson = _nbatest.queryPlayerPPGScrollGraph(p.pid)
     pp(ppgJson)
     fgpercent = _nbatest.queryPlayerFGPScrollGraph(p.pid)
-    logo_url = "img/Team_Logos/{}.png".format(str.lower(pi['TEAM_ABBREVIATION']))
+    logo_url = "img/Team_Logos/{}.png".format(pi['TEAM_ABBREVIATION'])
     stat_table = _nbatest.queryTableInfo(p.pid)
     scroll2D_1 = FusionCharts("scrollline2d", "Chart1", "600", "400", "chart-containter-1", "json", json.loads(ppgJson))
     scroll2d_2 = FusionCharts("scrollline2d", "Chart2", "600", "400","chart-container-2","json",json.loads(fgpercent))
