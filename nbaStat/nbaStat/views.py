@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from nba_api.stats.endpoints import commonplayerinfo
 from nba_api.stats.endpoints import playercareerstats
 import _nbatest
@@ -8,6 +8,8 @@ from nba_api.stats.static import players
 from datetime import datetime
 from fusioncharts import FusionCharts
 import json
+from random import seed
+from random import randint
 
 header = {
     'Host': 'stats.nba.com',
@@ -73,19 +75,19 @@ def playerPage(request):
      
 
     print("Got " + p.full_name)
-    common_player_info = commonplayerinfo.CommonPlayerInfo(player_id=p.id, timeout=40, headers=header)
+    common_player_info = commonplayerinfo.CommonPlayerInfo(player_id=p.pid, timeout=40, headers=header)
     common_player_info = common_player_info.get_normalized_dict()
     pi = common_player_info['CommonPlayerInfo'][0]
-    ppgJson = _nbatest.queryPlayerPPGScrollGraph(p.id)
+    ppgJson = _nbatest.queryPlayerPPGScrollGraph(p.pid)
     pp(ppgJson)
-    fgpercent = _nbatest.queryPlayerFGPScrollGraph(p.id)
+    fgpercent = _nbatest.queryPlayerFGPScrollGraph(p.pid)
     logo_url = "img/Team_Logos/{}.png".format(str.lower(pi['TEAM_ABBREVIATION']))
-    stat_table = _nbatest.queryTableInfo(p.id)
+    stat_table = _nbatest.queryTableInfo(p.pid)
     scroll2D_1 = FusionCharts("scrollline2d", "Chart1", "600", "400", "chart-containter-1", "json", json.loads(ppgJson))
     scroll2d_2 = FusionCharts("scrollline2d", "Chart2", "600", "400","chart-container-2","json",json.loads(fgpercent))
     context = {
             'Logo_URL':logo_url,
-            'Headshot_URL':"https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{}.png".format(p.id),
+            'Headshot_URL':"https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{}.png".format(p.pid),
             'Player_Name':p.full_name,
             'Player_Position':pi['POSITION'],
             'Player_Team_City' :pi['TEAM_CITY'],
@@ -107,4 +109,8 @@ def aboutPage(request):
 
 
 def randomPage(request):
-    return render(request, 'player.html', {'Player_Name': 'Random Player'})
+    random_id = randint(1,4393)
+    p = player.objects.get(id=random_id)
+    redirect_URL = '/player_name/?player_name={}+{}'.format(p.first_name,p.last_name)
+
+    return redirect(redirect_URL)

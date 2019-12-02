@@ -70,14 +70,17 @@ def queryTableInfo(pid):
             i+=1
         else:
             i=1
+
+        if item[6] is None: item[6] = 1
+
         jData[item[1]] = {}
         jData[item[1]]["team"] = item[4]
-        jData[item[1]]["pointPerGame"] = truncate(item[26]/item[6], 1)
-        jData[item[1]]["fieldGoalPercentage"] = item[11]
-        jData[item[1]]["fieldGoal3Percentage"] = item[14]
-        jData[item[1]]["assistsPerGame"] = item[21]//item[6]
-        jData[item[1]]["reboundsPerGame"] = item[20]//item[6]
-        jData[item[1]]["personalFouls"] = item[25]
+        jData[item[1]]["pointPerGame"] = truncate(item[26]/item[6], 1) if item[26] is not None else None
+        jData[item[1]]["fieldGoalPercentage"] = item[11] if item[11] is not None else None
+        jData[item[1]]["fieldGoal3Percentage"] = item[14] if item[14] is not None else None
+        jData[item[1]]["assistsPerGame"] = item[21]//item[6] if item[21] is not None else None
+        jData[item[1]]["reboundsPerGame"] = item[20]//item[6] if item[20] is not None else None
+        jData[item[1]]["personalFouls"] = item[25] if item[25] is not None else None
         
     pprint(jData, indent=2)
     Data = dict()
