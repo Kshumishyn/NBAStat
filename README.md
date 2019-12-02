@@ -31,19 +31,22 @@ A Repository for the Django/Python Implemented Web Page containing NBA Team and 
 
 ### Sprint 4:
 [Sprint 4 Plan](https://docs.google.com/document/d/1COXk3VyuFRoEVnb-JLJxKLkeWnljcLDOGC4WISU71rM/edit?usp=sharing)  
-[Sprint 4 Report](Unavailable)
+[Sprint 4 Report](https://docs.google.com/document/d/1m1HBcWxZtMXsp5uO9zwWNUdgqFn-AKMY55VpEvKhP8I/edit?usp=sharing)
 
 ## Files/Directories  
 ```
 ├── All_Players.json  
+├── getAllTeams.py  
 ├── loadJSON.py  
 ├── nbaStat  
 │   ├── db.sqlite3  
+│   ├── fusioncharts.py  
 │   ├── manage.py  
 │   ├── nbaStat  
+│   ├── _nbatest.py  
 │   ├── player  
+│   ├── __pycache__  
 │   └── static  
-├── _nbatest.py  
 ├── ProjectDocuments  
 │   ├── Release Plan.pdf  
 │   ├── Sprint #1 Plan.pdf  
@@ -52,6 +55,8 @@ A Repository for the Django/Python Implemented Web Page containing NBA Team and 
 │   ├── Sprint #2 Report.pdf  
 │   ├── Sprint #3 Plan.pdf  
 │   ├── Sprint #3 Report.pdf  
-│   └── Sprint #4 Plan.pdf  
-└── README.md  
+│   ├── Sprint #4 Plan.pdf  
+│   └── Sprint #4 Report.pdf  
+├── README.md  
+└── team.json  
 ```
