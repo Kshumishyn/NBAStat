@@ -27,7 +27,7 @@ if(len(sys.argv) == 2):
         full = players['full_name']
         id = players['id']
         active = players['is_active']
-        p = player(first_name = fn, last_name = ln, full_name = full, id = id, is_active = active)
+        p = player(first_name = fn, last_name = ln, full_name = full, pid = id, is_active = active)
         p.save()
         print(p)
 

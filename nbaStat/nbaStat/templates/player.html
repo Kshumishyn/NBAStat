@@ -93,25 +93,27 @@
                     <div class="card-group" style="height:100%">
                         <div class="card bg-dark border-0">
                             <div class="card-body">
-                                <div class="card-title display-4" style="font-weight: bold;color:white; text-align: center;">
-                                    Age: {{Player_Age}}
-                                </div>
+                                <ul class="list-group">
+                                    <li class="display-4" style="font-weight: bold;color:white; list-style-type: none" ;>
+                                        Position: {{Player_Position}}
+                                    </li>
+                                    <li class="display-4" style="font-weight: bold;color:white; list-style-type: none" ;>
+                                        Age: {{Player_Age}}
+                                    </li>
+                                    <li class="display-4" style="font-weight: bold;color:white; list-style-type: none" ;>
+                                        Height: {{Player_Height}}
+                                    </li>
+                                    <li class="display-4" style="font-weight: bold;color:white; list-style-type: none" ;>
+                                        Weight: {{Player_Weight}}
+                                    </li>
+                                </ul>
                             </div>
+
                         </div>
                         <div class="card bg-dark border-0">
-                            <div class="card-body">
-                                <div class="card-title display-4" style="font-weight: bold;color:white; text-align: center;">
-                                    Height: {{Player_Height}}
-                                </div>
-                            </div>
+                            <img class="card-img-top " style="width: 85%;" src='{% static '' %}{{Logo_URL}}'>
                         </div>
-                        <div class="card bg-dark border-0">
-                            <div class="card-body ">
-                                <div class="card-title display-4" style="font-weight: bold;color:white; text-align: center;">
-                                    Weight: {{Player_Weight}}
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -127,7 +129,7 @@
 
     <!--Coming Soon-->
     <div class="container-fluid p-4" style="background: url('{% static '' %}{{Logo_URL}}'); background-repeat: no-repeat;
-    background-size:contain;background-attachment:local;background-position:center;">
+    background-size:contain;background-attachment:local;background-position:top;">
         <div class="row p-4">
             <div class="col-6 mx-auto">
                 <div id="chart-containter-1">{{chart1|safe}}</div>
@@ -151,18 +153,18 @@
                 </tr>
             </thead>
             <tbody>
-                
-                    {% for season,values in stats.items %}
-                    <tr>
+
+                {% for season,values in stats.items %}
+                <tr>
                     <td>{{ season }}</td>
-                        {%for key, val in values.items%}
-                              <td>{{val}}</td>
-                        {% endfor %}
-                    </tr>
+                    {%for key, val in values.items%}
+                    <td>{{val}}</td>
                     {% endfor %}
-                
-            
-                
+                </tr>
+                {% endfor %}
+
+
+
             </tbody>
         </table>
 

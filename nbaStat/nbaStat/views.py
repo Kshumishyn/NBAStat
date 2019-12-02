@@ -30,7 +30,7 @@ def playerPage(request):
     
     # Tries to Query by player's full name
     try:
-        p = player.objects.get(full_name__iexact=name)
+        p = player.objects.get(full_name__iexact=" ".join(name.split()))
     except:
         print("Failed to get " + name)
         
@@ -87,6 +87,7 @@ def playerPage(request):
             'Logo_URL':logo_url,
             'Headshot_URL':"https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{}.png".format(p.id),
             'Player_Name':p.full_name,
+            'Player_Position':pi['POSITION'],
             'Player_Team_City' :pi['TEAM_CITY'],
             'Player_Team_Name': pi['TEAM_NAME'],
             'Player_Team_abbv':pi['TEAM_ABBREVIATION'],
