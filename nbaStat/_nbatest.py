@@ -140,15 +140,34 @@ def queryPlayerFGPScrollGraph(pid):
     datem = dict()
     datem["data"] = list()
     jujaData["dataSet"].append(datem)
+    jujaData["trendlines"] = list()
+    trendLine = dict()
+    trendLine["line"] = list()
+    jujaData["trendlines"].append(trendLine)
+    lineInfo = dict()
+    total = 0
+    i = len(d['resultSets'][0]['rowSet'])
     #print("This is a list of the careertotalRegularstats of Lebron: ")
     for item in d['resultSets'][0]['rowSet']:
         season = item[1]
         fgp = item[11]
         d = {}
         d["value"] = fgp
+        total += d["value"]
         jujaData["dataSet"][0]["data"].append(d)
         kvPair = {"label" : season}
         jujaData["categories"][0]["category"].append(kvPair)
+        
+    avg = (total/i)
+    lineInfo["startvalue"] = avg
+    lineInfo["endvalue"] = ""
+    lineInfo["color"] = "#29C3BE"
+    lineInfo["displayvalue"] = "Career average PPG"
+    lineInfo["valueonright"] = "1"
+    lineInfo["dashed"] = "1"
+    lineInfo["thickness"] = "2"
+    jujaData["trendlines"][0]["line"].append(lineInfo)
+    pprint(jujaData, indent=2)
     return json.dumps(jujaData)
 
 
@@ -176,7 +195,13 @@ def queryPlayerPPGScrollGraph(pid):
     datem = dict()
     datem["data"] = list()
     jujaData["dataSet"].append(datem)
-    #print("This is a list of the careertotalRegularstats of Lebron: ")
+    jujaData["trendlines"] = list()
+    trendLine = dict()
+    trendLine["line"] = list()
+    jujaData["trendlines"].append(trendLine)
+    lineInfo = dict()
+    total = 0
+    i = len(d['resultSets'][0]['rowSet'])
     for item in d['resultSets'][0]['rowSet']:
         season = item[1]
         gp =item[6]
@@ -184,9 +209,22 @@ def queryPlayerPPGScrollGraph(pid):
         ppg =dict()
         
         ppg["value"] = truncate(pts/gp, 1)
+        total += int(ppg["value"])
         jujaData["dataSet"][0]["data"].append(ppg)
         kvPair = {"label" : season}
         jujaData["categories"][0]["category"].append(kvPair)
+    
+    avg = (total/i)
+    lineInfo["startvalue"] = avg
+    lineInfo["endvalue"] = ""
+    lineInfo["color"] = "#29C3BE"
+    lineInfo["displayvalue"] = "Career average PPG"
+    lineInfo["valueonright"] = "1"
+    lineInfo["dashed"] = "1"
+    lineInfo["thickness"] = "2"
+    jujaData["trendlines"][0]["line"].append(lineInfo)
+    pprint(jujaData, indent=2)
+    
     return json.dumps(jujaData)
 
 
