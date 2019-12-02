@@ -109,8 +109,13 @@ def aboutPage(request):
 
 
 def randomPage(request):
-    random_id = randint(1,4393)
-    p = player.objects.get(id=random_id)
+    active = False
+
+    while not active:
+        random_id = randint(1,4393)
+        p = player.objects.get(id=random_id)
+        active = p.is_active
+
     redirect_URL = '/player_name/?player_name={}+{}'.format(p.first_name,p.last_name)
 
     return redirect(redirect_URL)
