@@ -75,19 +75,19 @@ Using either command-line, terminal or external interface, download python3 and 
 In addition to python3, install the pip3 interface, this will be a crucial package manager.
 
 ##### 4. Install dependencies
-Using some form of command-line or terminal, use the pip3 package manager to download and install the "Django" and "nba_api" packages and verify they have installed correctly.
-`pip3 install Django`
-`pip3 install nba_api`
+Using some form of command-line or terminal, use the pip3 package manager to download and install the "Django" and "nba_api" packages and verify they have installed correctly.  
+`pip3 install Django`  
+`pip3 install nba_api`  
 
 ##### 5. Update server database and static elements
-In the nested nbaStat directory containing manage.py, run the following commands:
-`python3 manage.py collectstatic`
-`python3 manage.py makemigrations`
-`python3 manage.py migrate`
+In the nested nbaStat directory containing manage.py, run the following commands:  
+`python3 manage.py collectstatic`  
+`python3 manage.py makemigrations`  
+`python3 manage.py migrate`  
 
 ##### 6. Run server
-Begin the server by running the following command:
-`python3 manage.py runserver`
+Begin the server by running the following command:  
+`python3 manage.py runserver`  
 
 ##### 7. Explore Website
 By default the website will be hosted locally on localhost:8000. Navigate to that in a browser and explore the available content.
