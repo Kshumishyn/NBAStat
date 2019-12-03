@@ -125,7 +125,3 @@ footer.footer {
     padding-top: 4rem;
     padding-bottom: 4rem
 }
-
-.card-img-top{
-    background-image:'{% static "/img/img_avatar1.png" %}';
-}
