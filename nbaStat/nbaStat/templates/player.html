@@ -131,6 +131,7 @@
             <div class="col"></div>
         </div>
     </header>
+    
 
     <!--Coming Soon-->
     <div class="container-fluid p-4" style="background: url('{% static '' %}{{Logo_URL}}'); background-repeat: no-repeat;
@@ -146,14 +147,14 @@
         <table class="table table-dark table-striped p-4">
             <thead>
                 <tr>
-                    <th>Season</th>
-                    <th>TEAM</th>
-                    <th>PPG</th>
-                    <th>FG%</th>
-                    <th>FG3%</th>
-                    <th>APG</th>
-                    <th>RPG</th>
-                    <th>PF</th>
+                    <th><a data-toggle="tooltip" title="Season Year">Season</a></th>
+                    <th><a data-toggle="tooltip" title="Team Abbreviation">TEAM</a></th>
+                    <th><a data-toggle="tooltip" title="Points Per Game">PPG</a></th>
+                    <th><a data-toggle="tooltip" title="Field Goal Percentage">FG%</a></th>
+                    <th><a data-toggle="tooltip" title="Field Goal 3 Percentage">FG3%</a></th>
+                    <th><a data-toggle="tooltip" title="Assists Per Game">APG</a></th>
+                    <th><a data-toggle="tooltip" title="Rebounds Per Game">RPG</a></th>
+                    <th><a data-toggle="tooltip" title="Personal Fouls">PF</a></th>
 
                 </tr>
             </thead>
@@ -168,10 +169,9 @@
                 </tr>
                 {% endfor %}
 
-
-
             </tbody>
         </table>
+
 
 
 
@@ -217,6 +217,12 @@
     <!-- Bootstrap core JavaScript -->
     <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
     <script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+
+    <script>
+            $(document).ready(function(){
+              $('[data-toggle="tooltip"]').tooltip();
+            });
+            </script>
 
 </body>
 
