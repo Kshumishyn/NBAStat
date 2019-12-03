@@ -62,10 +62,10 @@ def playerPage(request):
 
             for p in p1:
                 name = p['full_name'].replace(" ", "+")
-                results[p['full_name']] = "http://localhost:8000/player_name/?player_name=" + name
+                results[p['full_name']] = "/player_name/?player_name=" + name
             for p in p2:
                 name = p['full_name'].replace(" ", "+")
-                results[p['full_name']] = "http://localhost:8000/player_name/?player_name=" + name
+                results[p['full_name']] = "/player_name/?player_name=" + name
 
 
         #print('results', results)
