@@ -21,9 +21,6 @@ header = {
     'Accept-Language': 'en-US,en;q=0.9',
     'Referer': 'https://stats.nba.com',
 }
-#player_info = commonplayerinfo.CommonPlayerInfo(player_id=2544, timeout=35, headers = header)
-
-
 
 
     # Just the headers for the PostSeason
@@ -56,6 +53,7 @@ header = {
     # [24] -- TOV -- TURNOVERS
     # [25] -- PF -- PERSONAL FOULS
     # [26] -- PTS -- POINTS
+    
 def truncate(n, dec):
     if n == None:
         return None
@@ -89,36 +87,6 @@ def queryTableInfo(pid):
     for key in sorted(jData.keys(),reverse = True):
         Data[key] = jData[key]
     return Data
-
-
-def queryPlayerFG3PScrollGraph(pid):
-    career = playercareerstats.PlayerCareerStats(player_id=pid, timeout= 60, headers=header)
-    d = career.get_dict()
-    jData = dict()
-    jujaData["chart"] =dict()
-    jujaData["chart"]["theme"] = "candy"
-    jujaData["chart"]["caption"] = "FG3% per season"
-
-    jujaData["chart"]["xAxisName"] = "Season"
-    jujaData["chart"]["yAxisName"] = "FG3% Per Game"
-    jujaData["categories"] = list()
-    cata = dict()
-    cata["category"] = list()
-    jujaData["categories"].append(cata)
-    jujaData["dataSet"] = list()
-    datem = dict()
-    datem["data"] = list()
-    jujaData["dataSet"].append(datem)
-    #print("This is a list of the careertotalRegularstats of Lebron: ")
-    for item in d['resultSets'][0]['rowSet']:
-        season = item[1]
-        d = {}
-        d["value"] = item[14]
-        jujaData["dataSet"][0]["data"].append(d)
-        kvPair = {"label" : season}
-        jujaData["categories"][0]["category"].append(kvPair)
-    return json.dumps(jujaData)
-    
 
 
 def queryPlayerFGPScrollGraph(pid):
@@ -172,7 +140,6 @@ def queryPlayerFGPScrollGraph(pid):
     jujaData["trendlines"][0]["line"].append(lineInfo)
     pprint(jujaData, indent=2)
     return json.dumps(jujaData)
-
 
 
 def queryPlayerPPGScrollGraph(pid):
@@ -231,76 +198,8 @@ def queryPlayerPPGScrollGraph(pid):
     
     return json.dumps(jujaData)
 
-
-
-def queryPlayerPPGBarGraph(pid):
-
-    
-    career = playercareerstats.PlayerCareerStats(player_id=pid, timeout= 60, headers=header)
-    d = career.get_dict()
-    # This prints all data for a player seperated by:
-    # [0] -- SeasonTotalsRegularSeason
-    # [1] -- CareerTotalsRegularSeason
-    # [2] -- SeasonTotalPostSeason
-    # [3] -- CareerTotalsPostSeason
-    # [4] -- CareerTotalsAllStarSeasons
-    # [5] -- SeasonTotalsCollegeSeasons -- NOT RELEVANT
-    # [6] -- CareerTotalsCollegeSeason -- NOT RELEVANT
-    # [7] -- SeasonRankingsRegularSeason -- EX. Lebron was #1 in PTS in 2007-08
-    # [8] -- SeasonRankingPostSeasons 
-    #print("This is a dict of the entirety of the career stats of Lebron: ")
-    #print(d3['resultSets'], "\n\n")   
-
-# This gets a dict of the careertotalRegularstats
-    jData = {}
-    jData["chart"] = {}
-    jData["chart"]["theme"] = "fusion"
-    jData["chart"]["caption"] = "Points per season"
-    
-    jData["chart"]["xaxisname"] = "Season"
-    jData["chart"]["yaxisname"] = "Points Per Game"
-    jData["data"] = []
-    #print("This is a list of the careertotalRegularstats of Lebron: ")
-   # print(d3['resultSets'][0], "\n\n")
-   # print(d3['resultSets'][0]['headers'], "\n\n")
-   # print(d3['resultSets'][0]['rowSet'], "\n\n")
-   # print(d3['resultSets'][0]['rowSet'][-2], "\n\n")
-    for item in d3['resultSets'][0]['rowSet']:
-        season = item[1]
-        #print(season)
-        gp =item[6]
-        pts = item[26]
-        #print("%.1f" % (pts/gp))
-        ppg = {}
-        ppg["label"] = season
-        ppg["value"] = truncate(pts/gp, 1)
-        #print(ppg)
-        jData["data"].append(ppg)
-#    print(jData, "\n\n\n")
-        #pprint(jujaData, indent = 2)
-#    column2D = fusioncharts("column2d", "myFirstChart", "640", "480", "myFirstchart-containter", "json", jData);
-    return json.dumps(jData)
-
         
-    
 def main():   
-
-    #print("headers format: ")
-    #print(d3['resultSets'][0]['headers'], "\n\n")
-    
-    
-
-
-    # Printing RowSet, who's format follows the headers format
-    # This will print all post seasons Lebron played in
-    #print("This is a list of all seasons that Lebron played in: ")
-    #print(d3['resultSets'][2]['rowSet'])
-
-
-    #d2 = player_info.get_dict()
-    #print(d2)
-
-
 
     """
     player_info=commonplayerinfo.CommonPlayerInfo(player_id=2544, timeout=35, headers=header)
@@ -390,7 +289,6 @@ def main():
     career = playercareerstats.PlayerCareerStats(player_id=2544, timeout= 60, headers=header)
     d3 = career.get_dict()
     """
-
 
 if __name__ == '__main__':
     queryTableInfo(2544)
