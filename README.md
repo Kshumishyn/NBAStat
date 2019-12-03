@@ -13,6 +13,8 @@ A Repository for the Django/Python Implemented Web Page containing NBA Team and 
 
 ## Documents (Live  Updates)
 [Release Plan](https://docs.google.com/document/d/1nJGOxF5GoE3BxtW1B5ujn3DLQTCFF8OjEpv2Y7UUhI4/edit?usp=sharing)  
+[Working Prototype Known Problems Report](https://docs.google.com/document/d/1is3xJD_DspNIHmydAzxzgiwd9nEv8kD_E6VHc7KTIwk/edit?usp=sharing)  
+[System and Unit Test Report](https://docs.google.com/document/d/1c4oCdJh30i7caVZcQ-TXPTrgJtvE5OPgEl6yDXjRYmw/edit?usp=sharing)  
 
 ### Sprint 1:
 [Sprint 1 Plan](https://docs.google.com/document/d/1tbNu38Wda2Chr2G6RD29FZIok0ideNPkI4XeGHe6ceg/edit?usp=sharing)  
