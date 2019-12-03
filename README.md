@@ -58,10 +58,12 @@ A Repository for the Django/Python Implemented Web Page containing NBA Team and 
 │   ├── Sprint #3 Plan.pdf  
 │   ├── Sprint #3 Report.pdf  
 │   ├── Sprint #4 Plan.pdf  
-│   └── Sprint #4 Report.pdf  
+│   ├── Sprint #4 Report.pdf  
+│   ├── System and Unit Test Report.pdf  
+│   └── Working Prototype Known Problems Report.pdf  
 ├── README.md  
 ├── team.json  
-└── Testing   
+└── Testing    
 ```
 
 # Setup and Execution
