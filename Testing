@@ -1,1 +1,25 @@
-Unit tests(25 points):Include a file/directory named ‘Testing’ in your Git Repository.There should be details (can be in a separate file in the directory) provided by each team member about the module and the functional testing theyhave done. Each team member picks a module or module and lists the equivalence classes and the test cases selected to cover all equivalence classes.
+Unit tests(25 points):Include a file/directory named ‘Testing’ in your Git Repository.There should be details (can be in a separate file in the directory) provided by each team member about the module and the functional testing they have done. Each team member picks a module or module and lists the equivalence classes and the test cases selected to cover all equivalence classes.
+This applicaiton had a wide scope. This is because we had many different moving parts that we had to bring all together. This application included several different programming languages, such as Python, HTML, CSS, and some JS. Because of this we had to create several different tests for the different components of the system.
+
+Testing done by Justin Armbrust:
+- Tested Django integration
+- Tested Django created of page at specified host and port nubmer
+- Tested Django models with database
+- Tested HTML/CSS resizing
+
+Testing done by Justin Kelly:
+- Tested redirection of results page
+- Tested getting the name sent from search bar
+- Tested the API calls for retrieving names 
+
+Testing done by Samuel Gibson:
+- Tested how the queries to the API worked
+- Tested how the API sent back information
+- Tested how to parse the information sent back from the API queries
+- Tested how to correctly collect and send information to the webpage
+
+Testing done by Kostyantyn Shumishyn:
+- Tested initial interactions of Python3, Django and SQLite3
+- Tested HTML and Django Static Image interaction
+- Tested HTML integration
+- Tested Django SQLite3 Json Player Information Storage
