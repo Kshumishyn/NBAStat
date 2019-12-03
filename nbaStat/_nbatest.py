@@ -57,6 +57,8 @@ header = {
     # [25] -- PF -- PERSONAL FOULS
     # [26] -- PTS -- POINTS
 def truncate(n, dec):
+    if n == None:
+        return None
     mult = 10 ** dec
     return int(n* mult)/mult
 
@@ -76,8 +78,8 @@ def queryTableInfo(pid):
         jData[item[1]] = {}
         jData[item[1]]["team"] = item[4]
         jData[item[1]]["pointPerGame"] = truncate(item[26]/item[6], 1) if item[26] is not None else None
-        jData[item[1]]["fieldGoalPercentage"] = item[11] if item[11] is not None else None
-        jData[item[1]]["fieldGoal3Percentage"] = item[14] if item[14] is not None else None
+        jData[item[1]]["fieldGoalPercentage"] = truncate(item[11]*100,1) if item[11] is not None else None
+        jData[item[1]]["fieldGoal3Percentage"] = truncate(item[14]*100,1) if item[14] is not None else None
         jData[item[1]]["assistsPerGame"] = item[21]//item[6] if item[21] is not None else None
         jData[item[1]]["reboundsPerGame"] = item[20]//item[6] if item[20] is not None else None
         jData[item[1]]["personalFouls"] = item[25] if item[25] is not None else None
@@ -126,7 +128,7 @@ def queryPlayerFGPScrollGraph(pid):
     jujaData["chart"] =dict()
     jujaData["chart"]["theme"] = "candy"
     jujaData["chart"]["caption"] = "FG% per season"
-    jujaData["chart"]["numbersuffix"] = "FG%"
+    jujaData["chart"]["numbersuffix"] = "%"
     jujaData["chart"]["xAxisName"] = "Season"
     jujaData["chart"]["yAxisName"] = "FG% Per Game"
     jujaData["chart"]["exportenabled"]= "1"
@@ -152,13 +154,13 @@ def queryPlayerFGPScrollGraph(pid):
         season = item[1]
         fgp = item[11]
         d = {}
-        d["value"] = fgp
+        d["value"] = fgp*100
         total += d["value"]
         jujaData["dataSet"][0]["data"].append(d)
         kvPair = {"label" : season}
         jujaData["categories"][0]["category"].append(kvPair)
         
-    avg = (total/i)
+    avg = truncate((total/i),1)
     lineInfo["startvalue"] = avg
     lineInfo["endvalue"] = ""
     lineInfo["color"] = "#29C3BE"
@@ -166,6 +168,7 @@ def queryPlayerFGPScrollGraph(pid):
     lineInfo["valueonright"] = "1"
     lineInfo["dashed"] = "1"
     lineInfo["thickness"] = "2"
+    lineInfo["tooltext"] = "Career FG%" + str(truncate(avg,1))
     jujaData["trendlines"][0]["line"].append(lineInfo)
     pprint(jujaData, indent=2)
     return json.dumps(jujaData)
@@ -222,6 +225,7 @@ def queryPlayerPPGScrollGraph(pid):
     lineInfo["valueonright"] = "1"
     lineInfo["dashed"] = "1"
     lineInfo["thickness"] = "2"
+    lineInfo["tooltext"] = "Career avg PPG: " + str(truncate(avg, 1))
     jujaData["trendlines"][0]["line"].append(lineInfo)
     pprint(jujaData, indent=2)
     
